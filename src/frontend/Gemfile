@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Use default ruby version
+ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -23,6 +25,18 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# HTML Abstraction Markup Language: https://github.com/haml/haml
+gem 'haml'
+
+# Haml-rails provides Haml generators for Rails 4: https://github.com/indirect/haml-rails
+gem "haml-rails", "~> 0.9"
+
+# Pagging with kaminari : https://github.com/amatsuda/kaminari
+gem 'kaminari'
+
+# Bootstrap CSS toolkit for Rails Asset Pipeline : https://github.com/seyhunak/twitter-bootstrap-rails
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,5 +55,10 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Use Capistrano for deployment: https://github.com/capistrano/capistrano
+  # gem 'capistrano', '2.15.5'
+  # gem 'net-ssh', '2.7.0'
+  # gem 'rvm-capistrano'
 end
 
