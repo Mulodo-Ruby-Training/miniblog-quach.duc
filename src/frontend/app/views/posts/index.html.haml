@@ -1,0 +1,8 @@
+/ View to show all posts in database
+%h3 LIST OF ALL POST
+- @posts.each do |post|
+  = post['title']
+  = post['description']
+  = post['content']
+  = post['thumbnail']
+  %br

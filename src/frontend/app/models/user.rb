@@ -27,12 +27,12 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save :create_token
 
-  search_syntax do
-    search_by :text do |scope, phrases|
-      columns = [:first_name, :last_name, :username]
-      scope.where_like(columns => phrases)
-    end
-  end
+  # search_syntax do
+  #   search_by :text do |scope, phrases|
+  #     columns = [:first_name, :last_name, :username]
+  #     scope.where_like(columns => phrases)
+  #   end
+  # end
 
   # Issue https://my.redmine.jp/mulodo/issues/21936
   # Create User Account
