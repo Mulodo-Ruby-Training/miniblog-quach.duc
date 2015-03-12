@@ -6,3 +6,7 @@
   = post['content']
   = post['thumbnail']
   %br
+/ #post_modal
+= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary"
+/ Modal
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
