@@ -28,9 +28,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # HTML Abstraction Markup Language: https://github.com/haml/haml
 gem 'haml'
 
-# Haml-rails provides Haml generators for Rails 4: https://github.com/indirect/haml-rails
-gem "haml-rails", "~> 0.9"
-
 # Pagging with kaminari : https://github.com/amatsuda/kaminari
 gem 'kaminari'
 
