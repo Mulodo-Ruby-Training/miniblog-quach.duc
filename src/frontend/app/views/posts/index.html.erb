@@ -17,7 +17,7 @@
         <td><%= post.description %></td>
         <td><%= post.content %></td>
         <td><%= post.thumbnail %></td>
-        <td><%= link_to 'Show', post %></td>
+        <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal" %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -29,3 +29,4 @@
 <%= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary" %>
 <!-- Modal -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal_show" role="dialog" tabindex="-1"></div>
