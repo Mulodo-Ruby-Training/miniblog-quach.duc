@@ -2,22 +2,10 @@
 <h3>LIST OF ALL POST</h3>
   <table>
     <tbody id="list_post">
-    <% @posts.each do |post| %>
-        <tr>
-        <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= post.content %></td>
-        <td><%= post.thumbnail %></td>
-        <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal" %></td>
-        <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal" %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-    <% end %>
+      <%= render  partial: 'shared/posts/list_posts', locals:  {posts:@posts} %>
     </tbody>
 </table>
 </div>
 <!-- #post_modal -->
 <%= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary" %>
 <!-- Modal -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal_show" role="dialog" tabindex="-1"></div>
