@@ -1,15 +1,6 @@
 <!-- View to show all posts in database -->
 <h3>LIST OF ALL POST</h3>
   <table>
-    <thead>
-    <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Content</th>
-    <th>Thumbnail</th>
-    <th colspan="3"></th>
-    </tr>
-    </thead>
     <tbody id="list_post">
     <% @posts.each do |post| %>
         <tr>
@@ -18,7 +9,7 @@
         <td><%= post.content %></td>
         <td><%= post.thumbnail %></td>
         <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal" %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal" %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>

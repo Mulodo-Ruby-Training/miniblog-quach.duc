@@ -1,3 +1,4 @@
+<!-- From for create new post, edit old post -->
 <%= form_for(@post, remote: true) do |f| %>
 <div>
   <%= f.label :Title %>
@@ -8,10 +9,12 @@
   <%= f.text_area :description, :required => true, class: "form-control" %>
 </div>
 <div>
+  <!-- TODO: use CKeditor -->
   <%= f.label :Content %>
   <%= f.text_area :content, class: "form-control", :required => true %>
 </div>
 <div>
+  <!-- TODO: upload image -->
   <%= f.label :Thumbnail %>
   <%= f.text_field :thumbnail, :required => true, class: "form-control"%>
 </div>
@@ -19,10 +22,15 @@
   <%= f.label :Status %>
   <%= f.check_box :status %>
 </div>
-  <!-- hidden_field store user_id -->
-  <%= f.hidden_field :user_id, :value => "2121" %>
+    <!-- hidden_field store user_id -->
+    <%= f.hidden_field :user_id, :value => "2121" %>
 <div class="actions">
-  <%= f.submit 'Create Post', :class => 'btn btn-success pull-right' %>
+  <!-- Check current to show button need -->
+  <% if  request.fullpath == "/posts/new" %>
+    <%= f.submit 'Create Post', :class => 'btn btn-success pull-right' %>
+  <% else %>
+    <%= f.submit 'Edit Post', :class => 'btn btn-success pull-right' %>
+  <% end %>
   <br/>
 </div>
 <% end %>

@@ -32,8 +32,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # DESC===========================
-    # DESC===========================
   end
 
   def new
@@ -49,6 +47,13 @@ class PostsController < ApplicationController
   end
 
   def update
+     respond_to do |format|
+      if @post.update(post_params)
+        format.js { render :action => "create_ok"}
+      else
+         format.js { render :action => "create_fail"}
+      end
+    end
   end
 
   def destroy
@@ -59,8 +64,7 @@ class PostsController < ApplicationController
     # DESC===========================
     @post.destroy
       respond_to do |format|
-        format.html { redirect_to posts_url, notice: 'User was successfully destroyed.' }
-        format.json { head :no_content }
+        format.html { redirect_to posts_url }
       end
   end
 
