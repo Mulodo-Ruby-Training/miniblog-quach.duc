@@ -2,23 +2,33 @@ class PostsController < ApplicationController
    # Set funtions use partial funtion in private
    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+
   # TODO: pagging, bootstap, filter (Ex: status, use_id,..), partial and helper
   def index
     # DESC===========================
     # Get all of Post to show in view
     # OUT: all record of Post
     # DESC===========================
-    @posts = Post.all
+    @posts = Post.all.reverse
   end
 
   def create
     # DESC===========================
     # Create record for Post
-    # IN: param_post
+    # IN: post_params
     # OUT: create new record in database
     #         show record in view
     # DESC===========================
-    # Post.create(param_post)
+    @post = Post.new(post_params)
+      # respond to js request
+      respond_to do |format|
+        #  if @post.save
+        #   format.js { render :action => "create_ok"}
+        # else
+        #   format.js { render :action => "create_fail"}
+        # end
+        @post.save ? format.js { render :action => "create_ok"} : format.js { render :action => "create_fail"}
+      end
   end
 
   def edit

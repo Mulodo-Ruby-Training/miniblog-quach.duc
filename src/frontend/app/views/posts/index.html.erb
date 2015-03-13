@@ -1,0 +1,15 @@
+<!-- View to show all posts in database -->
+<h3>LIST OF ALL POST</h3>
+<div id="list_post">
+  <% @posts.each do |post| %>
+    <%= post['title'] %>
+    <%= post['description'] %>
+    <%= post['content'] %>
+    <%= post['thumbnail'] %>
+    <br/>
+  <% end %>
+</div>
+<!-- #post_modal -->
+<%= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary" %>
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>
