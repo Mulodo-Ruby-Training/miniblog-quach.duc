@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     #         show record in view
     # DESC===========================
     @post = Post.new(post_params)
-      # respond to js request
+      # Respond to js request
       respond_to do |format|
         #  if @post.save
         #   format.js { render :action => "create_ok"}
@@ -52,11 +52,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # DESC===========================
+    # Destroy post
+    # IN: post attr
+    # OUT: delete this post in database
+    # DESC===========================
     @post.destroy
       respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+        format.html { redirect_to posts_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
   end
 
   private
