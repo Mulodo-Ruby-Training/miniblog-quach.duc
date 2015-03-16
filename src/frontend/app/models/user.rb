@@ -4,24 +4,24 @@ class User < ActiveRecord::Base
 
   # has_secure_password
 
-  accepts_nested_attributes_for :comments
+  # accepts_nested_attributes_for :comments
   # attr_accessor :password_digest
 
   # filter_parameter_logging :password, :password_confirmation
 
   # ========= Validation =========== #
   # validates :password, confirmation: true
-  validates :email, presence: true, uniqueness: true, length: 8..50, format: { with: /\A[a-z0-9\.]+@([a-z]{1,10}\.){1,2}[a-z]{2,4}\z/,message: "Invalid Email"}
-  validates :username, presence: true, uniqueness: true, length: 6..40
-  validates :first_name, presence: true, length: 2..50
-  validates :last_name, presence: true, length: 2..50
-  validates :avatar, format: {with: /\A*\.(JPEG|JPG|PNG|GIF|BMP|ICO)\z/i, message: "Your images incorrect formated, it must be formatted as: jpeg, png, gif, bmp, icon "}
-  validates :gender, numericality: true
-  # validates :display_name, uniqueness: true, length: 3..50
-  validates :birthday, format: {with: /\A[\d\/-]{10}\z/}
-  validates :status, numericality: true, length: {is: 1}, on: :update
-  validates :permission, length: {is: 5}, :on => :update
-  validates :address, length: 4..50
+  # validates :email, presence: true, uniqueness: true, length: 8..50, format: { with: /\A[a-z0-9\.]+@([a-z]{1,10}\.){1,2}[a-z]{2,4}\z/,message: "Invalid Email"}
+  # validates :username, presence: true, uniqueness: true, length: 6..40
+  # validates :first_name, presence: true, length: 2..50
+  # validates :last_name, presence: true, length: 2..50
+  # validates :avatar, format: {with: /\A*\.(JPEG|JPG|PNG|GIF|BMP|ICO)\z/i, message: "Your images incorrect formated, it must be formatted as: jpeg, png, gif, bmp, icon "}
+  # validates :gender, numericality: true
+  # # validates :display_name, uniqueness: true, length: 3..50
+  # validates :birthday, format: {with: /\A[\d\/-]{10}\z/}
+  # validates :status, numericality: true, length: {is: 1}, on: :update
+  # validates :permission, length: {is: 5}, :on => :update
+  # validates :address, length: 4..50
 
   # # preprocessor
   # before_save { email.downcase! }

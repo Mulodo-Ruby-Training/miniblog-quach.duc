@@ -6,8 +6,8 @@
         <td><%= post.description %></td>
         <td><%= raw(post.content)%></td>
         <td><%= post.thumbnail %></td>
-        <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal" %></td>
-        <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal" %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
+        <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
         </tr>
-    <% end %>
+<% end %>
