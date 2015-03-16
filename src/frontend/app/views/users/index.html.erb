@@ -11,10 +11,12 @@
       </div>
   </div>
   <div class="row">
-    <table class="table table-hover">
-      <tbody id="list_post">
-        <%= render  partial: '/shared/users/list_users', locals: {users:@users} %>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody id="list_post">
+          <%= render  partial: '/shared/users/list_users', locals: {users:@users} %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

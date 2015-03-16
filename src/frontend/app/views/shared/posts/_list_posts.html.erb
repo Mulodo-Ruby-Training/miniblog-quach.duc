@@ -3,8 +3,9 @@
 <% @posts.each do |post| %>
         <tr>
         <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= raw(post.content)%></td>
+        <!-- truncate if descript or content is very long  -->
+        <td><%= post.description .truncate(20, :separator => " ") %></td>
+        <td><%= raw(post.content).truncate(30, :separator => " ")%></td>
         <td><%= post.thumbnail %></td>
         <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
         <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
