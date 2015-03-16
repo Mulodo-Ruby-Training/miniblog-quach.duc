@@ -19,12 +19,10 @@ Post.delete_all()
 # Rails console
 # ActiveRecord::Base.connection.execute("DELETE from posts")
 # CREAT==========================
-Post.create([
-                      {title: 'Title 1', description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat. 1', content: 'Lorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint. 1', thumbnail: 'thumbnail 1', user_id: '1', status: true },
-                      {title: 'Title 2', description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat. 2', content: 'Lorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint. 2', thumbnail: 'thumbnail 2', user_id: '1', status: true },
-                      {title: 'Title 3', description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat. 3', content: 'CLorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint.3', thumbnail: 'thumbnail 3', user_id: '1', status: false },
-                      {title: 'Title 3', description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat. 4', content: 'Lorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint. 4', thumbnail: 'thumbnail 4', user_id: '1', status: false }
-                 ])
+# Creat 20 post
+(1..20).each do |e|
+  Post.create(title: 'Title'+e.to_s, description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat.'+e.to_s, content: 'Lorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint.'+e.to_s, thumbnail: 'thumbnail'+e.to_s, user_id: e.to_s, status: true)
+end
 # # ==============================
 
 # CREATE DATABASE FOR USER TABLE
@@ -44,11 +42,8 @@ User.delete_all()
 # Rails console
 # ActiveRecord::Base.connection.execute("DELETE from USERS")
 # CREAT==========================
-User.create([
-                    {username: 'username 1', first_name: 'first_name 1', last_name: 'last_name 1', email: 'email 1', address: 'address 1', encrypt_pass: 'encrypt_pass 1', avatar: 'avatar 1', gender: true , birthday: '21-05-1992' },
-                    {username: 'username 2', first_name: 'first_name 2', last_name: 'last_name 2', email: 'email 2', address: 'address 2', encrypt_pass: 'encrypt_pass 2', avatar: 'avatar 2', gender: false , birthday: '21-05-1993' },
-                    {username: 'username 3', first_name: 'first_name 3', last_name: 'last_name 3', email: 'email 3', address: 'address 3', encrypt_pass: 'encrypt_pass 3', avatar: 'avatar 3', gender: false , birthday: '21-06-1992' },
-                    {username: 'username 4', first_name: 'first_name 4', last_name: 'last_name 4', email: 'email 4', address: 'address 4', encrypt_pass: 'encrypt_pass 4', avatar: 'avatar 4', gender: true , birthday: '21-05-1990' }
-                 ])
+(1..20).each do |e|
+  User.create({username: 'username'+e.to_s, first_name: 'first_name'+e.to_s, last_name: 'last_name'+e.to_s, email: 'email'+e.to_s, address: 'address'+e.to_s, encrypt_pass: 'encrypt_pass'+e.to_s, avatar: 'avatar'+e.to_s, gender: true , birthday: '21-05-1992' })
+end
 # # ==============================
 

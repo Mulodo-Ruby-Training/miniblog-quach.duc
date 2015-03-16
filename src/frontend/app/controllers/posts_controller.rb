@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     # Get all of Post to show in view
     # OUT: all record of Post
     # DESC===========================
-    params[:user_id] ? @posts = Post.where(user_id: params[:user_id]).all : @posts = Post.all.reverse
+    params[:user_id] ? @posts = Post.where(user_id: params[:user_id]).all.page(params[:page]).per(5).order('updated_at DESC') : @posts = Post.all.page(params[:page]).per(5).order('updated_at DESC')
   end
 
   def create
