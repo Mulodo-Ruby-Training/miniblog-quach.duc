@@ -1,0 +1,5 @@
+$("form[data-remote]").on("ajax:success", function(e, data, status, xhr) {
+  $("#tbody_data").html("<%= escape_javascript(render  partial: 'table_data' , locals:  {data_get: @users.to_a}) %>");
+}).on("ajax:error", function(e, xhr, status, error) {
+  alert("error");
+});
