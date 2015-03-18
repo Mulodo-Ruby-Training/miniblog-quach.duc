@@ -93,15 +93,3 @@ class PostsController < ApplicationController
         params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id)
     end
 end
-
-① Today's task
-   ◎ Task #23486: Login + Logout + Home
-       ■ Done     : 80%
-       ■ Status   :  InProcess
-       ■ Reference: https://my.redmine.jp/mulodo/issues/23486
-② Problem
-   ◎ (None)
-③ Notice
-   ◎ (None)
-④ Plan
-   Improve core in view
