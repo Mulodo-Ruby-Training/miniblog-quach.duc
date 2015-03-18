@@ -8,8 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # redirect_to log_in_path, :notice => "Signed up success, can login to system !", :user_mail => @user
-      redirect_to log_in_path,:flash => { :notice => "Signed up success, can login to system !", :user_mail => @user[:email] }
+      redirect_to log_in_path,:flash => { :notice => "Signed up success, can login to system !", :user_name => @user[:username] }
     else
      render :new
     end
@@ -23,8 +22,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = 'Successfully checked in'
-      redirect_to root_url
+      redirect_to '/users/'+@user[:id].to_s, :flash => { :notice => "Update profile successfully"}
     else
       render :edit
     end

@@ -7,16 +7,17 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Register</h3>
+                        <% if current_user %>
+                          <h3 class="panel-title"><i class="fa fa-user"></i>&nbsp;<b>EDIT</b></h3>
+                        <% else %>
+                          <h3 class="panel-title"><i class="fa fa-user"></i>&nbsp;<b>REGISTER</b></h3>
+                        <% end %>
                     </div>
                     <div class="panel-body">
                         <form role="form">
                             <fieldset>
                               <div class="form-group">
                                 <%= f.email_field :email, :class => "form-control",:placeholder => "E-mail" , :autofocus => true , :required => true %>
-                              </div>
-                              <div class="form-group">
-                                <%= f.text_field :username, :class => "form-control",:placeholder => "Username",  :required => true %>
                               </div>
                               <div class="form-group">
                                 <%= f.text_field :first_name, :class => "form-control",:placeholder => "First name" %>
@@ -31,7 +32,17 @@
                                 <%= f.date_field :birthday, :class => "form-control",:placeholder => "Birthday" %>
                               </div>
                               <div class="form-group">
-                                <%= f.check_box :gender %>&nbsp;<%= f.label 'Gender' %>
+                                <%= f.check_box :gender %>&nbsp;Male
+                              </div>
+                            <% if current_user %>
+                              <hr/>
+                              <p class="text-danger">CHANGE LOGIN INFO</p>
+                            <% else %>
+                              <hr/>
+                              <p class="text-success">LOGIN INFO</p>
+                            <% end %>
+                              <div class="form-group">
+                                <%= f.text_field :username, :class => "form-control",:placeholder => "Username", :required => true %>
                               </div>
                               <div class="form-group">
                                 <%= f.password_field :password, :class => "form-control",:placeholder => "Password" %>
@@ -40,7 +51,11 @@
                                 <%= f.password_field :password_confirmation, :class => "form-control",:placeholder => "Password Confirmation" %>
                               </div>
                                 <!-- Change this to a button or input when using this as a form -->
+                              <% if current_user %>
+                                <%= f.submit 'Edit', :class => 'btn btn-success' %>
+                              <% else %>
                                 <%= f.submit 'Register', :class => 'btn btn-success' %>
+                              <% end %>
                             </fieldset>
                         </form>
                     </div>

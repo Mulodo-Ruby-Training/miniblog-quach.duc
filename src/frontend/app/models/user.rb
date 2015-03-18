@@ -1,19 +1,21 @@
 class User < ActiveRecord::Base
-  has_many :posts, class_name: 'Post', foreign_key: 'id'
-  has_many :comments, class_name: 'Comment', foreign_key: 'id'
+  has_many :posts
+  has_many :comments
 
   attr_accessor :password
   before_save  :ecrypt_password
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_presence_of :username
+  validates_uniqueness_of :username
 
-  def self.authenticate(email, password)
-    # Find user by email
-    user = find_by_email(email)
+  def self.authenticate(username, password)
+    # Find user by username
+    user = find_by_username(username)
+    # Check user exist and check input password with encrypt password
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      #Return this user
       user
     else
       nil
@@ -21,6 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def ecrypt_password
+    # If have password, BCrypt generate key and encrypt password with this key
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)

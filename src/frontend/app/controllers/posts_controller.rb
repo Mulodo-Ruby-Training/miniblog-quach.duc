@@ -9,7 +9,13 @@ class PostsController < ApplicationController
     # Get all of Post to show in view
     # OUT: all record of Post
     # DESC===========================
-    params[:user_id] ? @posts = Post.where(user_id: params[:user_id]).all.page(params[:page]).per(5).order('updated_at DESC') : @posts = Post.all.page(params[:page]).per(5).order('updated_at DESC')
+    if  params[:user_id]
+      # Get all post of user
+      @posts = User.find_by_id(params[:user_id]).posts.all.page(params[:page]).per(8).order('updated_at DESC')
+    else
+      # Get all post
+      @posts = Post.all.page(params[:page]).per(8).order('updated_at DESC')
+    end
   end
 
   def create
@@ -64,7 +70,7 @@ class PostsController < ApplicationController
     # DESC===========================
     @post.destroy
       respond_to do |format|
-        format.html { redirect_to root_url }
+        format.html { redirect_to root_url, :flash => { :notice => "Delete post successfully" }}
       end
   end
 
@@ -87,3 +93,15 @@ class PostsController < ApplicationController
         params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id)
     end
 end
+
+① Today's task
+   ◎ Task #23486: Login + Logout + Home
+       ■ Done     : 80%
+       ■ Status   :  InProcess
+       ■ Reference: https://my.redmine.jp/mulodo/issues/23486
+② Problem
+   ◎ (None)
+③ Notice
+   ◎ (None)
+④ Plan
+   Improve core in view
