@@ -23,7 +23,4 @@
   <div class="text-center">
     <%= paginate @posts %>
   </div>
-  <!-- #post_modal -->
-  <%= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary" %>
-  <!-- Modal -->
 </div>

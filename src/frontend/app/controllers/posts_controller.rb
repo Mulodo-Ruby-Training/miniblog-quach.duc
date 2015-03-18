@@ -64,7 +64,7 @@ class PostsController < ApplicationController
     # DESC===========================
     @post.destroy
       respond_to do |format|
-        format.html { redirect_to posts_url }
+        format.html { redirect_to root_url }
       end
   end
 

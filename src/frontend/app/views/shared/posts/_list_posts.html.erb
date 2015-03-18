@@ -1,14 +1,12 @@
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal_show" role="dialog" tabindex="-1"></div>
 <% @posts.each do |post| %>
         <tr>
         <td><%= post.title %></td>
         <!-- truncate if descript or content is very long  -->
         <td><%= post.description .truncate(20, :separator => " ") %></td>
-        <td><%= raw(post.content).truncate(30, :separator => " ")%></td>
+        <!-- truncate and raw html string  -->
+        <td><%= raw(post.content.truncate(30, :separator => " "))%></td>
         <td><%= post.thumbnail %></td>
         <td><%= button_to 'Show', post,:method => :get,:remote => true, "data-target" => "#myModal_show", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
-        <td><%= button_to 'Edit', edit_post_path(post),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary" %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
         </tr>
 <% end %>

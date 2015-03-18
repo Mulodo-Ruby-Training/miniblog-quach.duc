@@ -6,11 +6,12 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :address
-      t.string :encrypt_pass
+      # Add two column for gem bcrypt-ruby
+      t.string :password_hash
+      t.string :password_salt
       t.string :avatar
       t.boolean :gender
       t.date :birthday
-
       t.timestamps null: false
     end
   end

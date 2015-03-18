@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  get 'list_users' => 'home#user_index'
+  root 'home#index'
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -43,9 +48,9 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
+    # concern :toggleable do
+    #    get 'posts'
+    # end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 

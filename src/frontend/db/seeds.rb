@@ -38,12 +38,12 @@ end
 # t.date                :birthday
 # # DELETE=========================
 User.delete_all()
-# like
-# Rails console
-# ActiveRecord::Base.connection.execute("DELETE from USERS")
-# CREAT==========================
-(1..20).each do |e|
-  User.create({username: 'username'+e.to_s, first_name: 'first_name'+e.to_s, last_name: 'last_name'+e.to_s, email: 'email'+e.to_s, address: 'address'+e.to_s, encrypt_pass: 'encrypt_pass'+e.to_s, avatar: 'avatar'+e.to_s, gender: true , birthday: '21-05-1992' })
-end
+# # like
+# # Rails console
+# # ActiveRecord::Base.connection.execute("DELETE from USERS")
+# # CREAT==========================
+# (1..20).each do |e|
+#   User.create({username: 'username'+e.to_s, first_name: 'first_name'+e.to_s, last_name: 'last_name'+e.to_s, email: 'email'+e.to_s, address: 'address'+e.to_s, encrypt_pass: 'encrypt_pass'+e.to_s, avatar: 'avatar'+e.to_s, gender: true , birthday: '21-05-1992' })
+# end
 # # ==============================
 

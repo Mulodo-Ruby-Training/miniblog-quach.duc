@@ -2,6 +2,31 @@ class User < ActiveRecord::Base
   has_many :posts, class_name: 'Post', foreign_key: 'id'
   has_many :comments, class_name: 'Comment', foreign_key: 'id'
 
+  attr_accessor :password
+  before_save  :ecrypt_password
+
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
+  def self.authenticate(email, password)
+    # Find user by email
+    user = find_by_email(email)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+
+  def ecrypt_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
+
   # has_secure_password
 
   # accepts_nested_attributes_for :comments

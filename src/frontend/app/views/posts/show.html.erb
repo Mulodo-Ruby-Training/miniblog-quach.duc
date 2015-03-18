@@ -21,7 +21,9 @@
           <!-- Blog Post -->
           <hr>
           <!-- Date/Time -->
-          <p><i class="fa fa-clock-o"></i> Posted on <%= @post.created_at %></p>
+          <p>
+              <i class="fa fa-clock-o"></i> Posted on <%= @post.created_at %>
+          </p>
           <hr>
           <!-- Preview Image -->
           <img class="img-responsive" src="http://placehold.it/900x300" alt="">
@@ -31,6 +33,11 @@
           <p><%= raw(@post.content) %></p>
           <hr>
           <!-- Blog Comments -->
+           <ul class="list-inline">
+                <li><%= button_to 'Edit', edit_post_path(@post[:id]),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary" %></li>
+                <li><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></li>
+            </ul>
+            <hr>
           <!-- Comments Form -->
           <div class="well">
               <h4>Leave a Comment:</h4>
@@ -133,3 +140,4 @@
       </div>
   </div>
 </div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>

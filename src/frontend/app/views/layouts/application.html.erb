@@ -29,8 +29,14 @@
                       <a href="/posts">POSTS</a>
                   </li>
                   <li>
-                      <a href="/users">USERS</a>
+                      <a href="/list_users">USERS</a>
                   </li>
+                   <li>
+                      <%= link_to "LOG IN", log_in_path %>
+                  </li>
+                    <li>
+                      <%= link_to "SIGN UP", sign_up_path %>
+                    </li>
               </ul>
           </div>
           <!-- /.navbar-collapse -->
@@ -39,7 +45,8 @@
   </nav>
   <br/>
   <br/>
+  <br/>
+  <br/>
   <%= yield %>
-
 </body>
 </html>

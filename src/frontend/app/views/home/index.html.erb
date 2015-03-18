@@ -1,9 +1,12 @@
- <!-- Page Content -->
+<!-- Page Content -->
 <div class="container">
-   <!-- Page Heading/Breadcrumbs -->
+<!-- Page Heading/Breadcrumbs -->
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header">List All Post</h1>
+            <h2 class="page-header">
+                 <span class="pull-left">List All Post&nbsp;&nbsp; </span>
+                <%= button_to "New Post", new_post_path, :method => :get, :remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :type => "button", class: "btn btn-primary" %>
+            </h2>
           <ol class="breadcrumb">
               <li><a href="/">Home</a>
               </li>
@@ -17,30 +20,60 @@
   <br/>
   <br/>
   <br/>
-  <% @posts.each do |post| %>
-        <div class="row">
-          <div class="col-md-1 text-center">
-              <p><i class="fa fa-camera fa-4x"></i>
-              </p>
-              <p><%= post.created_at %></p>
+   <div class="col-md-9">
+      <% @posts.each do |post| %>
+            <div class="row">
+              <div class="col-md-3">
+                  <a href="/posts/<%= post.id %>">
+                      <img class="img-responsive img-hover" src="http://placehold.it/200x200" alt="">
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <h3>
+                      <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                  </h3>
+                  <p><%= post.created_at %></p>
+                  <p>by <a href="#">Start Bootstrap</a>
+                  </p>
+                  <p><%= post.description %></p>
+              </div>
+            </div>
+            <br/>
+      <% end %>
+  </div>
+   <div class="col-md-3">
+     <div class="well">
+          <h4>Blog Categories</h4>
+          <div class="row">
+              <div class="col-lg-6">
+                  <ul class="list-unstyled">
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-lg-6">
+                  <ul class="list-unstyled">
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                      <li><a href="#">Category Name</a>
+                      </li>
+                  </ul>
+              </div>
           </div>
-          <div class="col-md-5">
-              <a href="/posts/<%= post.id %>">
-                  <img class="img-responsive img-hover" src="http://placehold.it/400x300" alt="">
-              </a>
-          </div>
-          <div class="col-md-6">
-              <h3>
-                  <a href="blog-post.html"><%= post.title %></a>
-              </h3>
-              <p>by <a href="#">Start Bootstrap</a>
-              </p>
-              <p><%= post.description %></p>
-              <a class="btn btn-primary" href="/posts/<%= post.id %>">Read More <i class="fa fa-angle-right"></i></a>
-          </div>
-        </div>
-        <br/>
-  <% end %>
+          <!-- /.row -->
+      </div>
+    </div>
   <br/>
   <br/>
 </div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1"></div>

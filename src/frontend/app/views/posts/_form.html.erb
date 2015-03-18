@@ -29,7 +29,7 @@
           <%= f.label :Content %>
           <%= f.text_area :content, class: "form-control", :required => true, :id => "ckedit_abcd" %>
     </div>
-      <!-- Check current user to show button need -->
+      <!-- Check current page to show button need -->
       <% if  request.fullpath == "/posts/new" %>
         <%= f.submit 'Create Post', :class => 'btn btn-success pull-right' %>
       <% else %>
@@ -43,6 +43,6 @@
 <% end %>
 <br/>
 <script>
-  // script init CKEDITOR
   CKEDITOR.replace("ckedit_abcd");
 </script>
+
