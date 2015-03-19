@@ -50,8 +50,9 @@ ActiveRecord::Schema.define(version: 20150310101735) do
     t.string   "password_hash", limit: 255
     t.string   "password_salt", limit: 255
     t.string   "avatar",        limit: 255
+    t.string   "avatar_path",   limit: 255
     t.boolean  "gender",        limit: 1
-    t.date     "birthday"
+    t.string   "birthday",      limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

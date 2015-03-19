@@ -10,8 +10,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_hash
       t.string :password_salt
       t.string :avatar
+      t.string :avatar_path
       t.boolean :gender
-      t.date :birthday
+      t.string :birthday
       t.timestamps null: false
     end
   end

@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
     end
   end
 
+
+
   # has_secure_password
 
   # accepts_nested_attributes_for :comments

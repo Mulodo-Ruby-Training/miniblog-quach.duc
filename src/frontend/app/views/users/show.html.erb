@@ -10,6 +10,17 @@
                       <form role="form">
                           <fieldset>
                             <div class="form-group">
+                                     <% if @user[:avatar_path] %>
+                                      <div style="width: 150px; height:135px; border:solid">
+                                        <%= image_tag "/upload/"+@user[:avatar_path],:style => " width: 100%; height: 100%; object-fit: contain;" %>
+                                      </div>
+                                    <% else %>
+                                      <div style="width: 150px; height:135px; border:solid">
+                                       <%= image_tag "no_images.jpeg", :style => " width: 100%; height: 100%; object-fit: contain;" %>
+                                      </div>
+                                    <% end %>
+                            </div>
+                            <div class="form-group">
                                 <label>Email</label>&nbsp;<%= @user[:email]%>
                             </div>
                             <div class="form-group">
@@ -25,9 +36,11 @@
                                 <label>Male</label>&nbsp;<%= @user[:gender]%>
                             </div>
                             <ul class="list-inline">
-                                <li><%= link_to 'Back', root_url, :class => 'btn btn-success'  %></li>
+                                <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
+                                <%if  current_user && current_user[:id] == @user[:id] %>
                                 <li><%= link_to 'Edit',edit_user_path(@user), :class => 'btn btn-primary' %></li>
-                                <li><%= link_to 'List Post',"/posts?user_id="+@user[:id].to_s, :class => 'btn btn-default' %></li>
+                                <% end %>
+                                <li><%= link_to 'List Post',"/posts?user_id="+@user[:id].to_s, :class => 'btn btn-success' %></li>
                             </ul>
                           </fieldset>
                       </form>
