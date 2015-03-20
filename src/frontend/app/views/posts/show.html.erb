@@ -26,7 +26,19 @@
           </p>
           <hr>
           <!-- Preview Image -->
-          <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+           <% if @post.thumbnail_path %>
+            <div  class="img-responsive">
+              <div style="width: 750px; height:300px; border:solid">
+                  <%= image_tag "/upload/"+@post.thumbnail_path,:style => " width: 100%; height: 100%; object-fit: contain;" %>
+                </div>
+            </div>
+          <% else %>
+             <div  class="img-responsive">
+               <div style="width: auto; height:300px; border:solid">
+                  <%=  image_tag "no_images.jpeg",:style => " width: 100%; height: 100%; object-fit: contain;" %>
+                </div>
+              </div>
+          <% end %>
           <hr>
           <!-- Post Content -->
           <div class="col-md-12">

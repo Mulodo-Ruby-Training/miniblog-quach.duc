@@ -91,6 +91,7 @@ class PostsController < ApplicationController
     # IN: post attr
     # OUT: delete this post in database
     # DESC===========================
+    FileUtils.remove_file(Rails.root.join('public','upload',@post[:thumbnail_path]))
     @post.destroy
       respond_to do |format|
         format.html { redirect_to root_url, :flash => { :notice => "Delete post successfully" }}

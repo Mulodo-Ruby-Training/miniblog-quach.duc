@@ -18,6 +18,8 @@
                     <%= render :partial => 'users/form/form_edit_info', locals: {f:f} %>
                   <% when "edit_user_pass" %>
                     <%= render :partial => 'users/form/form_change_pass', locals: {f:f} %>
+                  <% else %>
+                    <%= render :partial => 'users/form/form_edit_info', locals: {f:f} %>
                   <% end %>
                   <ul class="list-inline">
                       <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
