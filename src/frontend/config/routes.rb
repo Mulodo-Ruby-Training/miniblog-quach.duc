@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   # Define route config for register, login, logout
   get "log_out"   => "sessions#destroy", :as => "log_out"
   get "log_in"     => "sessions#new",      :as => "log_in"
+
   get "sign_up"  => "users#new",          :as => "sign_up"
+
+  get "edit_user_info/:id"   => "users#edit",          :as => "edit_user_info"
+  get "edit_user_pass/:id"  => "users#edit",          :as => "edit_user_pass"
 
   get 'list_users'  => 'home#user_index'
   root 'home#index'

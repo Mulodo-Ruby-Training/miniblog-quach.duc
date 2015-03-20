@@ -19,13 +19,24 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new(post_params)
     # DESC===========================
     # Create record for Post
     # IN: post_params
     # OUT: create new record in database
     #         show record in view
     # DESC===========================
-    @post = Post.new(post_params)
+    if thumbnail_params[:thumbnail]
+      if ["image/svg","image/gif"].include?(thumbnail_params[:thumbnail].content_type.to_s)
+         flash[:alert] = "File extention fail (svg,gif)"
+         format.js { render :action => "create_fail"}
+      elsif thumbnail_params[:thumbnail].size > 1000000
+         flash[:alert] = "File size much be < 1MB"
+         format.js { render :action => "create_fail"}
+      else
+        ImagesUpload.upload(@post, thumbnail_params, "thumbnail")
+      end
+    end
       # Respond to js request
       respond_to do |format|
         #  if @post.save
@@ -33,6 +44,7 @@ class PostsController < ApplicationController
         # else
         #   format.js { render :action => "create_fail"}
         # end
+        flash[:alert] = "Something went wrong !"
         @post.save ? format.js { render :action => "create_ok"} : format.js { render :action => "create_fail"}
       end
   end
@@ -55,9 +67,20 @@ class PostsController < ApplicationController
   def update
      respond_to do |format|
       if @post.update(post_params)
+          if thumbnail_params[:thumbnail]
+          if ["image/svg", "image/gif"].include?(thumbnail_params[:thumbnail].content_type.to_s)
+            flash[:alert] = "File extention fail (svg,gif)"
+            format.js { render :action => "create_fail"}
+          elsif thumbnail_params[:thumbnail].size > 1000000
+            flash[:alert] = "File size much be < 1MB"
+            format.js { render :action => "create_fail"}
+          else
+            ImagesUpload.upload(@post, thumbnail_params, "thumbnail")
+          end
+        end
         format.js { render :action => "create_ok"}
       else
-         format.js { render :action => "create_fail"}
+        format.js { render :action => "create_fail"}
       end
     end
   end
@@ -83,6 +106,11 @@ class PostsController < ApplicationController
       # DESC===========================
       @post = Post.find(params[:id])
     end
+
+    def thumbnail_params
+      params.require(:post).permit(:thumbnail)
+    end
+
 
     def post_params
         # DESC===========================

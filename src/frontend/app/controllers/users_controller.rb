@@ -38,18 +38,18 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       if avatar_params[:avatar]
         if ["image/svg","image/gif"].include?(avatar_params[:avatar].content_type.to_s)
-         flash[:alert] = "File extention fail (svg,gif)"
-         render :new and return
-      elsif avatar_params[:avatar].size > 1000000
-         flash[:alert] = "File size much be < 1MB"
-         render :new and return
-      else
-        ImagesUpload.upload(@user, avatar_params, "avatar")
-      end
+          flash[:alert] = "File extention fail (svg,gif)"
+          render :new and return
+        elsif avatar_params[:avatar].size > 1000000
+          flash[:alert] = "File size much be < 1MB"
+          render :new and return
+        else
+          ImagesUpload.upload(@user, avatar_params, "avatar")
+        end
     end
       redirect_to '/users/'+@user[:id].to_s, :flash => { :notice => "Update profile successfully"}
     else
-      render :edit
+      render :edit and return
     end
   end
 

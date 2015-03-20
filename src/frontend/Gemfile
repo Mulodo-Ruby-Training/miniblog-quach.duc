@@ -40,6 +40,9 @@ gem "bcrypt-ruby", :require => "bcrypt"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# https://github.com/JangoSteve/remotipart
+gem 'remotipart', '~> 1.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

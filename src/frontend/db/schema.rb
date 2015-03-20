@@ -31,14 +31,15 @@ ActiveRecord::Schema.define(version: 20150310101735) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",       limit: 200,                          null: false
-    t.string   "description", limit: 255,                          null: false
-    t.text     "content",     limit: 65535,                        null: false
-    t.string   "thumbnail",   limit: 100,   default: "avatar.png"
-    t.integer  "user_id",     limit: 4,                            null: false
-    t.boolean  "status",      limit: 1,     default: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.string   "title",          limit: 200,                   null: false
+    t.string   "description",    limit: 255,                   null: false
+    t.text     "content",        limit: 65535,                 null: false
+    t.string   "thumbnail",      limit: 100
+    t.string   "thumbnail_path", limit: 100
+    t.integer  "user_id",        limit: 4,                     null: false
+    t.boolean  "status",         limit: 1,     default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "users", force: :cascade do |t|

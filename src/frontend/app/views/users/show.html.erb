@@ -36,11 +36,14 @@
                                 <label>Male</label>&nbsp;<%= @user[:gender]%>
                             </div>
                             <ul class="list-inline">
-                                <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
                                 <%if  current_user && current_user[:id] == @user[:id] %>
-                                <li><%= link_to 'Edit',edit_user_path(@user), :class => 'btn btn-primary' %></li>
+                                <li><%= link_to 'Edit profile', '/edit_user_info/'+@user[:id].to_s, :class => 'btn btn-primary' %></li>
+                                <li class="pull-right"><%= link_to 'Change Pass', '/edit_user_pass/'+@user[:id].to_s, :class => 'btn btn-warning' %></li>
                                 <% end %>
-                                <li><%= link_to 'List Post',"/posts?user_id="+@user[:id].to_s, :class => 'btn btn-success' %></li>
+                            </ul>
+                             <ul class="list-inline">
+                              <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
+                              <li class="pull-right"><%= link_to 'List Post',"/posts?user_id="+@user[:id].to_s, :class => 'btn btn-success' %></li>
                             </ul>
                           </fieldset>
                       </form>
