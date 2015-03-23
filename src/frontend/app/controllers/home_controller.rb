@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     # Get all of Post to show in view
     # OUT: all record of Post
     # DESC===========================
-    @posts = Post.all.page(params[:page]).per(8).order('updated_at DESC')
+    @posts = Post.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
   end
   def user_index
     # DESC===========================

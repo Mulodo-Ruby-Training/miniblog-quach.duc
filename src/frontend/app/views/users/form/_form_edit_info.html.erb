@@ -11,7 +11,7 @@
   <%= f.text_field :address, :class => "form-control",:placeholder => "Address" %>
 </div>
 <div class="form-group">
-  <%= f.text_field :birthday, :class => "form-control",:placeholder => "Birthday(dd/mm/yyyy)" %>
+  <%= f.text_field :birthday, :class => "form-control", :id => "input_birthday" ,:placeholder => "Birthday(dd/mm/yyyy)" %>
 </div>
 <div class="form-group">
   <ul class="list-inline">
@@ -22,3 +22,13 @@
   </ul>
 </div>
 <hr/>
+<script>
+  $('#input_birthday').datepicker({
+    format: "dd/mm/yyyy",
+    todayBtn: "linked",
+    orientation: "top auto",
+    multidate: false,
+    autoclose: true,
+    todayHighlight: true
+  });
+</script>

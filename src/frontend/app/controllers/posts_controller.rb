@@ -11,10 +11,10 @@ class PostsController < ApplicationController
     # DESC===========================
     if  params[:user_id]
       # Get all post of user
-      @posts = User.find_by_id(params[:user_id]).posts.all.page(params[:page]).per(8).order('updated_at DESC')
+      @posts = User.find_by_id(params[:user_id]).posts.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
     else
       # Get all post
-      @posts = Post.all.page(params[:page]).per(8).order('updated_at DESC')
+      @posts = Post.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
     end
   end
 
@@ -91,7 +91,9 @@ class PostsController < ApplicationController
     # IN: post attr
     # OUT: delete this post in database
     # DESC===========================
-    FileUtils.remove_file(Rails.root.join('public','upload',@post[:thumbnail_path]))
+    if @post[:thumbnail_path]
+      FileUtils.remove_file(Rails.root.join('public','upload',@post[:thumbnail_path]))
+    end
     @post.destroy
       respond_to do |format|
         format.html { redirect_to root_url, :flash => { :notice => "Delete post successfully" }}

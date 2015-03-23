@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :username
   validates_uniqueness_of :username
-  validates :birthday, format: {with: /\A(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[1-2]\d|3[01])\/\d{4}\Z/}, :allow_blank => true
 
   def self.authenticate(username, password)
     # Find user by username

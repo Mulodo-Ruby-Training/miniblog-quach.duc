@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.remotipart
+//= require bootstrap-datepicker.min
 //= require turbolinks
 //= require_tree .
 
