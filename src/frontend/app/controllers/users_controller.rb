@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    byebug
     if @user.update(user_params)
       if avatar_params[:avatar]
         if ["image/svg","image/gif"].include?(avatar_params[:avatar].content_type.to_s)
