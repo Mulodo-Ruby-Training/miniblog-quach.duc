@@ -16,6 +16,11 @@
       </div>
       <br/>
       <div>
+        <%= f.label :tag_list, "Category (separated by commas)" %><br />
+        <%= f.text_field :tag_list, value: @post.tag_list.to_s %>
+      </div>
+      <br/>
+      <div>
         <%= f.label :Thumbnail %>
         &nbsp;
         <input type="file" id="thumb_upload" style="display:none" name="post[thumbnail]"/>

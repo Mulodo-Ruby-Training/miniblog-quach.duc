@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'list_users'  => 'home#user_index'
   root 'home#index'
 
+  get       'categories/:tag',       to: 'posts#tagged', as: :tag
+
   resources :users
 
   resources :sessions

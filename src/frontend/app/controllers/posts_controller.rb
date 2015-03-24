@@ -22,6 +22,12 @@ class PostsController < ApplicationController
       @posts = Post.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
   end
 
+  def tagged
+    if params[:tag]
+      @posts  = Post.tagged_with(params[:tag])
+    end
+  end
+
   def create
     @post = Post.new(post_params)
     # DESC===========================
@@ -127,6 +133,6 @@ class PostsController < ApplicationController
         # IN: params
         # OUT: post_params
         # DESC===========================
-        params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id)
+        params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id, :tag_list)
     end
 end
