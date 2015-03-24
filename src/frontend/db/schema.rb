@@ -14,20 +14,11 @@
 ActiveRecord::Schema.define(version: 20150310101735) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content",    limit: 65535,                null: false
-    t.integer  "user_id",    limit: 4,                    null: false
-    t.integer  "post_id",    limit: 4,                    null: false
-    t.integer  "parent_id",  limit: 4,     default: 0
-    t.boolean  "status",     limit: 1,     default: true
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-  end
-
-  create_table "post_to_categories", force: :cascade do |t|
-    t.integer  "category_id", limit: 4, null: false
-    t.integer  "post_id",     limit: 4, null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.text     "content",    limit: 65535, null: false
+    t.integer  "user_id",    limit: 4,     null: false
+    t.integer  "post_id",    limit: 4,     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "posts", force: :cascade do |t|

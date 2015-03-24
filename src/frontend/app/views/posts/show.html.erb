@@ -2,6 +2,7 @@
 <div class="container">
  <!-- Page Heading/Breadcrumbs -->
   <div class="row">
+      <%= render  partial: '/shared/flash/flash_messages', locals: {notice_type:"notice"} %>
       <div class="col-lg-12">
           <h2 class="page-header"><%= @post.title.upcase %>
 <!--               <small><a href="#"><%= link_to "Author","/users/"+@post.user_id.to_s %></a>
@@ -58,69 +59,68 @@
                 <hr>
             <% end %>
           <!-- Blog Comments -->
-          <!-- Comments Form -->
-          <div class="well">
-              <h4>Leave a Comment:</h4>
-              <form role="form">
-                  <div class="form-group">
-                      <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-          </div>
-          <hr>
-          <!-- Posted Comments -->
-          <!-- Comment -->
-          <div class="media">
-              <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading">Start Bootstrap
-                      <small>August 25, 2014 at 9:30 PM</small>
-                  </h4>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-          </div>
-          <!-- Comment -->
-          <div class="media">
-              <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading">Start Bootstrap
-                      <small>August 25, 2014 at 9:30 PM</small>
-                  </h4>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                  <!-- Nested Comment -->
+          <div id="list_comments">
+            <!-- Posted Comments -->
+            <% @post_comments.each do |post_comment| %>
+              <% @user_comment = get_user_info(post_comment.user_id) %>
+              <!-- Comment -->
                   <div class="media">
                       <a class="pull-left" href="#">
-                          <img class="media-object" src="http://placehold.it/64x64" alt="">
+                          <% if @user_comment.avatar_path %>
+                            <div style="width: 50px; height:50px; border:solid">
+                              <%= image_tag "/upload/"+@user_comment.avatar_path, :style => " width: 100%; height: 100%; object-fit: contain;" %>
+                            </div>
+                          <% else %>
+                            <div style="width: 50px; height:50px; border:solid">
+                              <%= image_tag "no_images.jpeg", :style => " width: 100%; height: 100%; object-fit: contain;" %>
+                            </div>
+                          <% end %>
                       </a>
                       <div class="media-body">
-                          <h4 class="media-heading">Nested Start Bootstrap
-                              <small>August 25, 2014 at 9:30 PM</small>
+                          <h4 class="media-heading"> <%= @user_comment.username %>
+                              <small><%= post_comment.updated_at.strftime("%d/%m/%Y %I:%M") %></small>
                           </h4>
-                          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                           <div class="well">
+                              <div  style="overflow:auto;">
+                                <!-- TODO: format comment -->
+                                <%= post_comment.content %>
+                             </div>
+                           </div>
+                        <% if current_user && current_user[:id] == post_comment.user_id %>
+                          <ul class="list-inline">
+                            <li><%= button_to 'Edit', edit_comment_path(post_comment.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs" %></li>
+                            <li><%= link_to 'Destroy', post_comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" %></li>
+                          </ul>
+                        <% end %>
+
                       </div>
                   </div>
-                  <!-- End Nested Comment -->
-              </div>
+            <% end %>
           </div>
+          <!-- Comments Form -->
+              <% unless current_user %>
+                <div class="well">
+                  <h4>Log in to Comment</h4>
+                </div>
+              <% else %>
+                <div class="well">
+                      <h4>Leave a Comment:</h4>
+                      <%= form_for @comment, :remote => true do |f| %>
+                      <form role="form">
+                          <div class="form-group">
+                              <%= text_area(:comment, :content , cols: 40, rows: 3, class: 'form-control', required: true) %>
+                          </div>
+                          <%= f.hidden_field :user_id, :value => current_user[:id]  %>
+                          <%= f.hidden_field :post_id, :value => @post.id  %>
+                          <%= f.submit 'Comment', :class => 'btn btn-success', :disable_with => "Comment...", :method => :get, :remote => true %>
+                      </form>
+                      <% end %>
+                </div>
+              <% end %>
+          <hr>
       </div>
       <!-- Blog Sidebar Widgets Column -->
       <div class="col-md-4">
-          <!-- Blog Search Well -->
-          <div class="well">
-              <h4>Blog Search</h4>
-              <div class="input-group">
-                  <input type="text" class="form-control">
-                  <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                  </span>
-              </div>
-              <!-- /.input-group -->
-          </div>
           <!-- Blog Categories Well -->
           <div class="well">
               <h4>Blog Categories</h4>
@@ -151,11 +151,6 @@
                   </div>
               </div>
               <!-- /.row -->
-          </div>
-          <!-- Side Widget Well -->
-          <div class="well">
-              <h4>Side Widget Well</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
           </div>
       </div>
   </div>

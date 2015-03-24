@@ -66,6 +66,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    # Get list comments of post and init @comment for for create comment
+    # @post_comments = @post.comments.order('updated_at DESC')
+    @post_comments = @post.comments
+    @comment = Comment.new
   end
 
   def update
@@ -99,9 +103,7 @@ class PostsController < ApplicationController
       FileUtils.remove_file(Rails.root.join('public','upload',@post[:thumbnail_path]))
     end
     @post.destroy
-      respond_to do |format|
-        format.html { redirect_to root_url, :flash => { :notice => "Delete post successfully" }}
-      end
+    redirect_to root_url, :flash => { :notice => "Delete post successfully" }
   end
 
   private
