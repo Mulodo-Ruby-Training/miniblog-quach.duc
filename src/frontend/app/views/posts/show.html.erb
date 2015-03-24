@@ -3,10 +3,10 @@
  <!-- Page Heading/Breadcrumbs -->
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><%= @post.title.upcase %>
+          <h2 class="page-header"><%= @post.title.upcase %>
 <!--               <small><a href="#"><%= link_to "Author","/users/"+@post.user_id.to_s %></a>
               </small> -->
-          </h1>
+          </h2>
           <ol class="breadcrumb">
               <li><a href="/">Home</a>
               </li>
@@ -22,7 +22,7 @@
           <hr>
           <!-- Date/Time -->
           <p>
-              <i class="fa fa-clock-o"></i> Posted on <%= @post.created_at %>
+              <i class="fa fa-clock-o"></i> Posted on <%= @post.created_at.strftime("%d/%m/%Y %I:%M") %>
           </p>
           <hr>
           <!-- Preview Image -->

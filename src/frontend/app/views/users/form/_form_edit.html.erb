@@ -13,14 +13,7 @@
             <div class="panel-body">
               <form role="form">
                 <fieldset>
-                  <% case request.fullpath.split("/")[1] %>
-                  <% when "edit_user_info" %>
-                    <%= render :partial => 'users/form/form_edit_info', locals: {f:f} %>
-                  <% when "edit_user_pass" %>
-                    <%= render :partial => 'users/form/form_change_pass', locals: {f:f} %>
-                  <% else %>
-                    <%= render :partial => 'users/form/form_edit_info', locals: {f:f} %>
-                  <% end %>
+                <%= render_view_edit(f) %>
                   <ul class="list-inline">
                       <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
                       <li><%= f.submit 'Change', :class => 'btn btn-success' %></li>

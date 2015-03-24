@@ -1,9 +1,9 @@
    <div class="container">
       <%= form_for @user, :multipart => true do |f| %>
           <% if @user.errors.any? %>
-              <%= render  partial: '/shared/flash/flash_messages', locals: {notice_type:"errors_list"} %>
-        <% end %>
-        <%= render  partial: '/shared/flash/flash_messages', locals: {notice_type:"alert"} %>
+          <%= render  partial: '/shared/flash/flash_messages', locals: {notice_type:"errors_list"} %>
+          <% end %>
+          <%= render  partial: '/shared/flash/flash_messages', locals: {notice_type:"alert"} %>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">

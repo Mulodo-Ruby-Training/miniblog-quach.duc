@@ -9,13 +9,17 @@ class PostsController < ApplicationController
     # Get all of Post to show in view
     # OUT: all record of Post
     # DESC===========================
+    if params[:search_key]
+      # Get list post with search key
+      return @posts = Post.where('title LIKE :search_key OR description LIKE :search_key',{ search_key: "%#{params[:search_key]}%"})
+    end
+
     if  params[:user_id]
       # Get all post of user
-      @posts = User.find_by_id(params[:user_id]).posts.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
-    else
+      return @posts = User.find_by_id(params[:user_id]).posts.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
+    end
       # Get all post
       @posts = Post.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
-    end
   end
 
   def create
