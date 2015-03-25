@@ -46,12 +46,28 @@ gem 'remotipart', '~> 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#tagging
+# Tagging or category for rails
 gem 'acts-as-taggable-on', '~> 3.4'
 
+
 group :development, :test do
+  # gem test code coverage: https://github.com/colszowka/simplecov
+  gem 'simplecov'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+ # Gem need for test(rspec)
+ # Setting up Ruby objects as test data: https://github.com/thoughtbot/factory_girl
+  gem 'factory_girl_rails'
+
+  # Ensure a clean state for testing: https://github.com/DatabaseCleaner/database_cleaner
+  gem 'database_cleaner'
+
+  # Testing framework rspec for rails: https://github.com/rspec/rspec-rails
+  gem 'rspec-rails', '~> 3.1.0'
+
+  # Acceptance test framework for web applications: https://github.com/jnicklas/capybara
+  gem 'capybara', '2.4.4'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

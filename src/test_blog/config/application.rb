@@ -25,6 +25,7 @@ module FrontendDemo
 
     # TODO: Configure generator haml and rspec
     config.generators do |g|
+      g.factory_girl false
       # g.test_framework  :rspec
       # Comment g.javascript_engine :js For Using coffeescript in app/assets/javascripts
       g.javascript_engine :js

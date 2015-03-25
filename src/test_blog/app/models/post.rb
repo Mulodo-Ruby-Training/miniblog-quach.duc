@@ -5,5 +5,7 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  validates :description, presence: true
+  validates :title, presence: true
+
+  validates :content, presence: true
 end
