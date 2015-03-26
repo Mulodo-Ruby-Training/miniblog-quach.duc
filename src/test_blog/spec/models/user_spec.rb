@@ -2,20 +2,25 @@
 require './spec/spec_base_helper.rb'
 
 RSpec.describe User, type: :model do
+  # define user_1st, user_2nd to use
+  let(:user_1st) { FactoryGirl.attributes_for(:user_1st) }
+  let(:user_2nd) { FactoryGirl.attributes_for(:user_2nd) }
+
   describe 'Create/edit/delete user' do
+
       # Test function create user in model
       # desc: count and compare number of all user
       it "when create user" do
-        find_and_destroy("Post",FactoryGirl.attributes_for(:user_1st)[:id])
+        find_and_destroy("Post",user_1st[:id])
         @users_count = User.all.count
-        @user = User.create(FactoryGirl.attributes_for(:user_1st))
+        @user = User.create(user_1st)
         expect(@users_count).to eq(User.all.count - 1)
       end
 
       it "when update user" do
         # Destroy user_2nd if exist
-         find_and_destroy("Post",FactoryGirl.attributes_for(:user_2nd)[:id])
-        @user = User.update(User.first[:id], FactoryGirl.attributes_for(:user_2nd))
+         find_and_destroy("Post",user_2nd[:id])
+        @user = User.update(User.first[:id], user_2nd)
         expect(@user).to be_valid
       end
 
@@ -24,7 +29,7 @@ RSpec.describe User, type: :model do
   describe 'Check validation user' do
       # TODO: view bofore(:example), bofore(:context),...
       before do
-        @user = User.create(FactoryGirl.attributes_for(:user_1st))
+        @user = User.create(user_1st)
       end
 
       context "check username" do
@@ -41,9 +46,9 @@ RSpec.describe User, type: :model do
         end
 
         it "when an email address is already taken" do
-          user_with_same_email = @user.dup
-          user_with_same_email.email = @user.email.upcase
-          user_with_same_email.save
+          user_same_email = @user.dup
+          user_same_email.email = @user.email.upcase
+          user_same_email.save
         end
       end
   end
