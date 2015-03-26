@@ -16,12 +16,12 @@ def hook_selenium
     @driver = Selenium::WebDriver.for :firefox
   end
 
-  after(:each) do
-    # quit browser after finish test
-    @driver.quit
-  end
+  # after(:each) do
+  #   # quit browser after finish test
+  #   @driver.quit
+  # end
 
-  User.where(email: 'qhduc_test@gmail.com').destroy_all
+  User.where(email: 'user_test@email.com').destroy_all
 end
 
 def user_signup_login
@@ -40,3 +40,12 @@ def user_signup_login
   # Call action submit of form
   @driver.find_element(id: 'login_test').submit
 end
+
+def fckeditor_fill_in(id, params = {})
+    page.execute_script %Q{
+      var ckeditor = CKEDITOR.instances.#{id}
+      ckeditor.setData('#{params}')
+      ckeditor.focus()
+      ckeditor.updateElement()
+    }
+  end

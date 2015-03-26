@@ -29,7 +29,7 @@
       <br/>
       <div>
         <%= f.label :Status %>
-        <%= f.check_box :status %>
+        <%= f.check_box :status, :checked => true %>
       </div>
           <!-- hidden_field store user_id -->
           <%= f.hidden_field :user_id, :value => current_user[:id]  %>
@@ -38,13 +38,13 @@
   <div class="col-xs-12 col-md-8">
     <div class="well">
           <%= f.label :Content %>
-          <%= f.text_area :content, class: "form-control", :required => true, :id => "ckedit_content" %>
+          <%= f.text_area :content, class: "form-control", :id => "ckedit_content" %>
     </div>
       <!-- Check current page to show button need -->
       <% if  request.fullpath == "/posts/new" %>
-        <%= f.submit 'Create Post', :class => 'btn btn-success pull-right', :disable_with => "Create..." %>
+        <%= f.submit 'Create Post', :class => 'btn btn-success pull-right', :disable_with => "Create...", :id => "create_post_test" %>
       <% else %>
-        <%= f.submit 'Edit Post', :class => 'btn btn-success pull-right', :disable_with => "Edit..."%>
+        <%= f.submit 'Edit Post', :class => 'btn btn-success pull-right', :disable_with => "Edit..." %>
       <% end %>
   </div>
     <div>

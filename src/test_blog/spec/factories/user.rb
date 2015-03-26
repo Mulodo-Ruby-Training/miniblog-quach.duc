@@ -26,6 +26,7 @@ FactoryGirl.define do
   end
 
   factory :user_3th, class: User do
+    id '333'
     username 'user_test_login'
     password '12345'
     email 'user_test@email.com'
