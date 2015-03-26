@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    layout "layout_menu_right"
    # Set funtions use partial funtion in private
    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -76,6 +77,7 @@ class PostsController < ApplicationController
     # @post_comments = @post.comments.order('updated_at DESC')
     @post_comments = @post.comments
     @comment = Comment.new
+    @post_some_author = Post.where(user_id: @post.user_id).where('status = 1')
   end
 
   def update

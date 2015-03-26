@@ -1689,6 +1689,17 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
 
   */
+  #sidebar.affix-top {
+    position: static;
+    margin-top:30px;
+    width:228px;
+  }
+
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
 /* line 5, /home/huynhduc/Site/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
 #tag_cloud {
   width: auto;
@@ -1722,5 +1733,6 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 
  */
+
 
 

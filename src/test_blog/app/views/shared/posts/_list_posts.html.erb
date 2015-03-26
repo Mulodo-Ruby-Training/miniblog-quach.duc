@@ -6,11 +6,11 @@
           <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
         </a>
       </div> -->
-      <div class="col-md-8">
+      <div class="col-md-12">
         <h3><a href="/posts/<%= post.id %>"><%= post.title.truncate(20, :separator => " ").upcase %></h3>
         <h4><%= link_to "Author","/users/"+post.user_id.to_s %></h4>
         <p><%= post.created_at.strftime("%d/%m/%Y %I:%M") %></p>
-        <p><%= post.description.truncate(50, :separator => " ") %></p>
+        <p><%= post.description.truncate(100, :separator => " ") %></p>
         <p><a href="/posts/<%= post.id %>"> Read More</p></a>
         <p>
         <% if current_user && current_user[:id] == post.user_id %>
@@ -22,6 +22,6 @@
         </p>
       </div>
     </div>
-    <br/>
+    <hr/>
     <% end %>
   </div>

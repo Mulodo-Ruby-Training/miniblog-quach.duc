@@ -58,6 +58,16 @@
                 </ul>
                 <hr>
             <% end %>
+          <!-- Blog Widgets some auhor -->
+          <div class="well">
+            <h4>Some Author</h4>
+            <hr/>
+            <% @post_some_author.each do |psa| %>
+              <p><a href="/posts/<%= psa.id %>"><%= psa.title.truncate(20, :separator => " ").upcase %></p>
+              <br>
+            <% end %>
+          </div>
+          <br/>
           <!-- Blog Comments -->
           <div id="list_comments">
             <!-- Posted Comments -->
@@ -118,11 +128,6 @@
                 </div>
               <% end %>
           <hr>
-      </div>
-      <!-- Blog Sidebar Widgets Column -->
-      <div class="col-md-4">
-          <!-- Blog Categories Well -->
-          <%= render  partial: 'shared/categories/list_categories' %>
       </div>
   </div>
 </div>

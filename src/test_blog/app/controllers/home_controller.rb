@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout "layout_menu_right"
   def index
     # DESC===========================
     # Get all of Post to show in view
