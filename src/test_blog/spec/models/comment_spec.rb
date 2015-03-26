@@ -1,7 +1,7 @@
 # encoding: utf-8
 require './spec/spec_base_helper.rb'
 
-RSpec.describe Post, type: :model do
+RSpec.describe Comment, type: :model do
   describe 'Create/edit/delete comment' do
       # Test function create comment in model
       # desc: count and compare number of all comment
