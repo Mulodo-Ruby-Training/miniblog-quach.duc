@@ -17,7 +17,7 @@ FactoryGirl.define do
     id '222'
     username 'user_test_2'
     password '456789'
-    email 'user.params@email.com'
+    email 'user.params_2@email.com'
     first_name 'quach'
     last_name 'huynh duc'
     avatar '/profiles/lat.png'

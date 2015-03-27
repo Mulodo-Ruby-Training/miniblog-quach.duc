@@ -63,7 +63,7 @@
             <h4>Some Author</h4>
             <hr/>
             <% @post_some_author.each do |psa| %>
-              <p><a href="/posts/<%= psa.id %>"><%= psa.title.truncate(20, :separator => " ").upcase %></p>
+              <p><a href="/posts/<%= psa.id %>"><%= psa.title.truncate(20, :separator => " ").upcase %></a></p>
               <br>
             <% end %>
           </div>
@@ -98,8 +98,8 @@
                            </div>
                         <% if current_user && current_user[:id] == post_comment.user_id %>
                           <ul class="list-inline">
-                            <li><%= button_to 'Edit', edit_comment_path(post_comment.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs" %></li>
-                            <li><%= link_to 'Destroy', post_comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" %></li>
+                            <li><%= button_to 'Edit', edit_comment_path(post_comment.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", :name => "edit_comment_test" %></li>
+                            <li><%= link_to 'Destroy', post_comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs", :name => "delete_comment_test" %></li>
                           </ul>
                         <% end %>
 
@@ -122,7 +122,7 @@
                           </div>
                           <%= f.hidden_field :user_id, :value => current_user[:id]  %>
                           <%= f.hidden_field :post_id, :value => @post.id  %>
-                          <%= f.submit 'Comment', :class => 'btn btn-success', :disable_with => "Comment...", :method => :get, :remote => true %>
+                          <%= f.submit 'Comment', :class => 'btn btn-success', :disable_with => "Comment...", :method => :get, :remote => true, :name => 'comment_test' %>
                       </form>
                       <% end %>
                 </div>

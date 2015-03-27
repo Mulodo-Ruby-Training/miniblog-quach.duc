@@ -13,4 +13,12 @@ FactoryGirl.define do
     post_id 1
   end
 
+  factory :comment_3th, class: Comment do
+    content 'content comment 3th'
+  end
+
+  factory :comment_4th, class: Comment do
+    content 'content comment 4th'
+  end
+
 end

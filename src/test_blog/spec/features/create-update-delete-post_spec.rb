@@ -2,15 +2,18 @@
 require './spec/spec_base_helper.rb'
 
 describe 'User sign up to create post' do
+  # Define data to test
   let(:post_1st) { FactoryGirl.attributes_for(:post_1st) }
   let(:post_2nd) { FactoryGirl.attributes_for(:post_2nd) }
+
+  let(:user_1st) { FactoryGirl.attributes_for(:user_1st) }
 
   hook_selenium
 
 
   it "success" do
-    user_sign_up
-    user_log_in
+    user_sign_up(user_1st)
+    user_log_in(user_1st)
 
     @driver.get 'http://localhost:3000'
     # Test with mode production
@@ -19,9 +22,7 @@ describe 'User sign up to create post' do
     # FIXED:Failure/Error: @driver.find_element(name: 'post[title]').send_keys(FactoryGirl.attributes_for(:post_1st)[:title])
     #       Selenium::WebDriver::Error::StaleElementReferenceError:
     #       Element is no longer attached to the DOM
-
-    wait = Selenium::WebDriver::Wait.new(:timeout => 20)
-    wait.until { @driver.find_element(:name => "post[title]") }
+    hook_wait_post
 
     @driver.find_element(name: 'post[title]').send_keys(post_1st[:title])
     @driver.find_element(name: 'post[description]').send_keys(post_1st[:description])
@@ -32,14 +33,14 @@ describe 'User sign up to create post' do
     @driver.switch_to.alert.accept
   end
 
-  it "after that user want update info post" do
-    user_log_in
+  it "after that user want update info of this post" do
+    user_log_in(user_1st)
+
     @driver.get 'http://localhost:3000'
 
     @driver.find_element(:name, 'update_post_test_'+post_1st[:id].to_s).click
 
-    wait = Selenium::WebDriver::Wait.new(:timeout => 20)
-    wait.until { @driver.find_element(:name => "post[title]") }
+    hook_wait_post
 
     @driver.find_element(name: 'post[title]').send_keys(post_2nd[:title])
     @driver.find_element(name: 'post[description]').send_keys(post_2nd[:description])
@@ -49,8 +50,9 @@ describe 'User sign up to create post' do
     @driver.switch_to.alert.accept
   end
 
-  it "final user delete post" do
-    user_log_in
+  it "final user delete this post" do
+    user_log_in(user_1st)
+
     @driver.get 'http://localhost:3000'
 
     @driver.find_element(:name, 'delete_post_test_'+post_1st[:id].to_s).click
