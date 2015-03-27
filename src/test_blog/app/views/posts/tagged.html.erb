@@ -18,11 +18,11 @@
   <div class="col-md-3 text-center">
       <div class="thumbnail">
             <% if post.thumbnail_path %>
-              <div style="width: 237px; height:135px; border:solid">
+              <div style="width: 237px; height:135px; border:solid; border-width: 1px;">
                 <%= image_tag "/upload/"+ post.thumbnail_path,:style => " width: 100%; height: 100%; object-fit: contain;" %>
               </div>
           <% else %>
-             <div style="width: 237px; height:135px; border:solid">
+             <div style="width: 237px; height:135px; border:solid; border-width: 1px;">
                 <%=  image_tag "no_images.jpeg",:style => " width: 100%; height: 100%; object-fit: contain;" %>
               </div>
           <% end %>

@@ -1,0 +1,27 @@
+  <div class="col-lg-12">
+    <% posts.each do |post| %>
+    <div class="row">
+<!--       <div class="col-md-7">
+        <a href="portfolio-item.html">
+          <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
+        </a>
+      </div> -->
+      <div class="col-md-12">
+        <h3><a href="/posts/<%= post.id %>"><%= post.title.truncate(20, :separator => " ").upcase %></h3>
+        <h4><%= link_to "Author","/users/"+post.user_id.to_s %></h4>
+        <p><%= post.created_at.strftime("%d/%m/%Y %I:%M") %></p>
+        <p><%= post.description.truncate(100, :separator => " ") %></p>
+        <p><a href="/posts/<%= post.id %>"> Read More</p></a>
+        <p>
+        <% if current_user && current_user[:id] == post.user_id %>
+          <ul class="list-inline">
+            <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", name: "update_post_test_"+ post.id.to_s %></li>
+            <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs", name: "delete_post_test_"+ post.id.to_s  %></li>
+          </ul>
+        <% end %>
+        </p>
+      </div>
+    </div>
+    <hr/>
+    <% end %>
+  </div>

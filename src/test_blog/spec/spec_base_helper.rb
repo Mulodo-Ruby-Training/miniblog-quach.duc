@@ -30,7 +30,6 @@ end
 
 def user_sign_up(user)
   # Get url to sign up account in blog
-  User.where(email: 'user_test@email.com').destroy_all
   @driver.get 'http://localhost:3000/sign_up'
   # Fill account info to sign up
   @driver.find_element(name: 'user[email]').send_keys(user[:email])

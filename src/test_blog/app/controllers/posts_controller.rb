@@ -4,6 +4,7 @@ class PostsController < ApplicationController
    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 
+
   # TODO: pagging, bootstap, filter (Ex: status, use_id,..), partial and helper
   def index
     # DESC===========================
@@ -37,17 +38,7 @@ class PostsController < ApplicationController
     # OUT: create new record in database
     #         show record in view
     # DESC===========================
-    if thumbnail_params[:thumbnail]
-      if ["image/svg","image/gif"].include?(thumbnail_params[:thumbnail].content_type.to_s)
-         flash[:alert] = "File extention fail (svg,gif)"
-         format.js { render :action => "create_fail"}
-      elsif thumbnail_params[:thumbnail].size > 1000000
-         flash[:alert] = "File size much be < 1MB"
-         format.js { render :action => "create_fail"}
-      else
-        ImagesUpload.upload(@post, thumbnail_params, "thumbnail")
-      end
-    end
+     validate_upload_file
       # Respond to js request
       respond_to do |format|
         #  if @post.save
@@ -83,17 +74,7 @@ class PostsController < ApplicationController
   def update
      respond_to do |format|
       if @post.update(post_params)
-          if thumbnail_params[:thumbnail]
-          if ["image/svg", "image/gif"].include?(thumbnail_params[:thumbnail].content_type.to_s)
-            flash[:alert] = "File extention fail (svg,gif)"
-            format.js { render :action => "create_fail"}
-          elsif thumbnail_params[:thumbnail].size > 1000000
-            flash[:alert] = "File size much be < 1MB"
-            format.js { render :action => "create_fail"}
-          else
-            ImagesUpload.upload(@post, thumbnail_params, "thumbnail")
-          end
-        end
+        validate_upload_file
         format.js { render :action => "create_ok"}
       else
         format.js { render :action => "create_fail"}
@@ -112,6 +93,20 @@ class PostsController < ApplicationController
     end
     @post.destroy
     redirect_to root_url, :flash => { :notice => "Delete post successfully" }
+  end
+
+  def validate_upload_file
+    if thumbnail_params[:thumbnail]
+      if ["image/svg", "image/gif"].include?(thumbnail_params[:thumbnail].content_type.to_s)
+        flash[:alert] = "File extention fail (svg,gif)"
+        format.js { render :action => "create_fail"}
+      elsif thumbnail_params[:thumbnail].size > 1000000
+        flash[:alert] = "File size much be < 1MB"
+        format.js { render :action => "create_fail"}
+      else
+        ImagesUpload.upload(@post, thumbnail_params, "thumbnail")
+      end
+    end
   end
 
   private

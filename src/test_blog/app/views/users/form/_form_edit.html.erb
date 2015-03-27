@@ -16,7 +16,7 @@
                 <%= render_view_edit(f) %>
                   <ul class="list-inline">
                       <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
-                      <li><%= f.submit 'Change', :class => 'btn btn-success' %></li>
+                      <li><%= f.submit 'Change', :class => 'btn btn-success', :name => 'change_info_test' %></li>
                   </ul>
                 </fieldset>
               </form>

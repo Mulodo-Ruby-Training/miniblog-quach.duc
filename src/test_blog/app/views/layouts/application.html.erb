@@ -10,7 +10,7 @@
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -43,7 +43,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="profile" data-toggle="dropdown" role="button" aria-expanded="false">
                            <% if current_user.avatar_path %>
-                              <div style="width: 35px; height:35px; border:solid">
+                              <div style="width: 35px; height:35px; border:solid; border-width: 1px;">
                                 <%= image_tag "/upload/"+current_user.avatar_path,:style => " width: 100%; height: 100%; object-fit: contain;", :title => current_user.username %>
                               </div>
                             <% else %>
@@ -77,5 +77,6 @@
   <br/>
   <br/>
   <%= yield %>
+  <hr>
 </body>
 </html>
