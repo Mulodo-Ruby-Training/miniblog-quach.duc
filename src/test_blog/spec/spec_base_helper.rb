@@ -16,16 +16,16 @@ def hook_selenium
     @driver = Selenium::WebDriver.for :firefox
   end
 
-  # after(:each) do
-  #   # quit browser after finish test
-  #   @driver.quit
-  # end
+  after(:each) do
+    # quit browser after finish test
+    @driver.quit
+  end
 
-  User.where(email: 'user_test@email.com').destroy_all
 end
 
-def user_signup_login
+def user_sign_up
   # Get url to sign up account in blog
+  User.where(email: 'user_test@email.com').destroy_all
   @driver.get 'http://localhost:3000/sign_up'
   # Fill account info to sign up
   @driver.find_element(name: 'user[email]').send_keys(FactoryGirl.attributes_for(:user_3th)[:email])
@@ -33,19 +33,23 @@ def user_signup_login
   @driver.find_element(name: 'user[password]').send_keys(FactoryGirl.attributes_for(:user_3th)[:password])
   @driver.find_element(name: 'user[password_confirmation]').send_keys(FactoryGirl.attributes_for(:user_3th)[:password])
   # Fill call action submit of form
-  @driver.find_element(id: 'register_test').submit
-  # App redirect to form log in
-  # Fill password to log in
-  @driver.find_element(name: 'password').send_keys(FactoryGirl.attributes_for(:user_3th)[:password])
-  # Call action submit of form
-  @driver.find_element(id: 'login_test').submit
+  @driver.find_element(name: 'register_test').submit
 end
 
-def fckeditor_fill_in(id, params = {})
-    page.execute_script %Q{
-      var ckeditor = CKEDITOR.instances.#{id}
-      ckeditor.setData('#{params}')
-      ckeditor.focus()
-      ckeditor.updateElement()
-    }
-  end
+def user_log_in
+  @driver.get 'http://localhost:3000/log_in'
+  # Fill password to log in
+  @driver.find_element(name: 'password').send_keys(FactoryGirl.attributes_for(:user_3th)[:password])
+  @driver.find_element(name: 'username').send_keys(FactoryGirl.attributes_for(:user_3th)[:username])
+  # Call action submit of form
+  @driver.find_element(name: 'login_test').submit
+end
+
+# def fckeditor_fill_in(id, params = {})
+#     page.execute_script %Q{
+#       var ckeditor = CKEDITOR.instances.#{id}
+#       ckeditor.setData('#{params}')
+#       ckeditor.focus()
+#       ckeditor.updateElement()
+#     }
+#   end

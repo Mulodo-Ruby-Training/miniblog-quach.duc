@@ -6,7 +6,8 @@ describe 'User sign up account,log in with this account' do
   hook_selenium
 
   it "success" do
-    user_signup_login
+    user_sign_up
+    user_log_in
     # Get url to logout
     @driver.get 'http://localhost:3000/log_out'
   end

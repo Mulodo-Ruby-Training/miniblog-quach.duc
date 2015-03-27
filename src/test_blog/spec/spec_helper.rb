@@ -25,6 +25,7 @@ RSpec.configure do |config|
   # assertions if you prefer.
   config.include Capybara::DSL
 
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
@@ -34,6 +35,19 @@ RSpec.configure do |config|
     # ...rather than:
     #   # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
   # rspec-mocks config goes here. You can use an alternate test double

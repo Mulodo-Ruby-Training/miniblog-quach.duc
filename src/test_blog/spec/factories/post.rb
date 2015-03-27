@@ -3,6 +3,7 @@
 FactoryGirl.define do
 
   factory :post_1st, class: Post do
+    id 1
     title 'title of post 1st'
     description 'description post 1st'
     content 'content post 1st'
@@ -12,6 +13,7 @@ FactoryGirl.define do
   end
 
   factory :post_2nd, class: Post do
+    id 2
     title 'title of post 2nd'
     description 'description post 2nd'
     content 'content post 2nd'

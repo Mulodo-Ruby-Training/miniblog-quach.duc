@@ -15,8 +15,8 @@
         <p>
         <% if current_user && current_user[:id] == post.user_id %>
           <ul class="list-inline">
-            <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs" %></li>
-            <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" %></li>
+            <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", name: "update_post_test_"+ post.id.to_s %></li>
+            <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs", name: "delete_post_test_"+ post.id.to_s  %></li>
           </ul>
         <% end %>
         </p>

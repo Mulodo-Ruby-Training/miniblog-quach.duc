@@ -2,6 +2,8 @@
 
 RSpec.describe PostsController, :type => :controller do
 
+  let(:post_1st) { FactoryGirl.attributes_for(:post_1st) }
+
   describe "When we call active index" do
     it "returns http success" do
       get :index
@@ -10,6 +12,9 @@ RSpec.describe PostsController, :type => :controller do
   end
 
   describe "When we call active show" do
+    before do
+      Post.create(post_1st)
+    end
     it "returns http success" do
       get :show, id: Post.first[:id]
       expect(response).to have_http_status(:success)

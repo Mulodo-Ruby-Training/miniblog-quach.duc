@@ -42,9 +42,9 @@
     </div>
       <!-- Check current page to show button need -->
       <% if  request.fullpath == "/posts/new" %>
-        <%= f.submit 'Create Post', :class => 'btn btn-success pull-right', :disable_with => "Create...", :id => "create_post_test" %>
+        <%= f.submit 'Create Post', :class => 'btn btn-success pull-right', :disable_with => "Create...", :name => "create_post_test" %>
       <% else %>
-        <%= f.submit 'Edit Post', :class => 'btn btn-success pull-right', :disable_with => "Edit..." %>
+        <%= f.submit 'Edit Post', :class => 'btn btn-success pull-right', :disable_with => "Edit...",:name => "edit_post_test" %>
       <% end %>
   </div>
     <div>

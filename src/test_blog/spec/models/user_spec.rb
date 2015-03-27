@@ -18,10 +18,11 @@ RSpec.describe User, type: :model do
       end
 
       it "when update user" do
+        User.create(user_1st)
         # Destroy user_2nd if exist
-         find_and_destroy("Post",user_2nd[:id])
+        # find_and_destroy("Post",user_2nd[:id])
         @user = User.update(User.first[:id], user_2nd)
-        expect(@user).to be_valid
+        expect(@user[:id]).to eq(user_2nd[:id].to_i)
       end
 
   end

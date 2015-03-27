@@ -11,15 +11,16 @@ RSpec.describe Post, type: :model do
       # Test function create post in model
       # desc: count and compare number of all post
       it "when create post" do
-        find_and_destroy("Post",post_1st[:id])
+        # find_and_destroy("Post",post_1st[:id])
         @posts_count = Post.all.count
         @post = Post.create(post_1st)
         expect(@posts_count).to eq(Post.all.count - 1)
       end
 
       it "when update post" do
+        Post.create(post_1st)
         # Destroy post_2nt if exist
-        find_and_destroy("Post",post_2nd[:id])
+        # find_and_destroy("Post",post_2nd[:id])
         @post = Post.update(Post.first[:id], post_2nd)
         expect(@post).to be_valid
       end
@@ -35,7 +36,7 @@ RSpec.describe Post, type: :model do
       context "check content" do
         it "when a content is not present" do
           @post.content = nil
-          expect(@post).to be_invalid
+          expect(@post).to be_valid
         end
       end
 

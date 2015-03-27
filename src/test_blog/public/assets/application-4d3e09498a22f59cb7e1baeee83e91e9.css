@@ -1700,20 +1700,20 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
     top:70px;
     width:228px;
   }
-/* line 5, /home/huynhduc/Site/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
+/* line 5, /home/huynhduc/Site/new/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
 #tag_cloud {
   width: auto;
   line-height: 1.6em;
 }
-/* line 8, /home/huynhduc/Site/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
+/* line 8, /home/huynhduc/Site/new/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
 #tag_cloud .s {
   font-size: 0.8em;
 }
-/* line 9, /home/huynhduc/Site/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
+/* line 9, /home/huynhduc/Site/new/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
 #tag_cloud .m {
   font-size: 1.2em;
 }
-/* line 10, /home/huynhduc/Site/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
+/* line 10, /home/huynhduc/Site/new/miniblog-quach.duc/src/test_blog/app/assets/stylesheets/posts.scss */
 #tag_cloud .l {
   font-size: 1.8em;
 }

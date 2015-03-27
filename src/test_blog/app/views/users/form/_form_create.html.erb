@@ -45,12 +45,12 @@
                                 <%= f.password_field :password, :class => "form-control",:placeholder => "Password",  :required => true  %>
                               </div>
                               <div class="form-group">
-                                <%= f.password_field :password_confirmation, :class => "form-control",:placeholder => "Password Confirmation",  :required => true, :id => "password_confirmation_test"  %>
+                                <%= f.password_field :password_confirmation, :class => "form-control",:placeholder => "Password Confirmation",  :required => true %>
                               </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                <ul class="list-inline">
                                   <li><%= link_to 'Back', root_url, :class => 'btn btn-default'  %></li>
-                                  <li><%= f.submit 'Register', :class => 'btn btn-success', :id => 'register_test' %></li>
+                                  <li><%= f.submit 'Register', :class => 'btn btn-success', :name => 'register_test' %></li>
                               </ul>
                             </fieldset>
                         </form>
