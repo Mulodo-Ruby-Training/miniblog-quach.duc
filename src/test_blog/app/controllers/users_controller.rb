@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     if params[:search_key]
       # Get list post with search key
       return @users = User.where('username LIKE :search_key OR first_name LIKE :search_key OR last_name LIKE :search_key',{ search_key: "%#{params[:search_key]}%" })
+      # TEST SQL INJECTION
+      # return @users = User.where('username LIKE ' + params[:search_key].to_s)
+      # return @users = User.where('username LIKE ?',params[:search_key].to_s)
     end
     @users = User.all.page(params[:page]).per(8).order('updated_at DESC')
   end
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.new(user_params)
     # Funtion upload image and validate
     # TODO: short code

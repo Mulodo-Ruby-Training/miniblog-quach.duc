@@ -93,7 +93,11 @@
                            <div class="well">
                               <div  style="overflow:auto;">
                                 <!-- TODO: format comment -->
+                                <!-- TEST XSS -->
                                 <%= post_comment.content %>
+                                <!--<%== post_comment.content %> -->
+                                <!-- <a href=javascript:alert('Hello')>dasda</a> -->
+                                <!-- <%= sanitize "<a href=javascript:alert('Hello')>dasda</a>" %> -->
                              </div>
                            </div>
                         <% if current_user && current_user[:id] == post_comment.user_id %>

@@ -7,5 +7,17 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
 
-  # validates :content, presence: true
+  # validates :tag_list, :format => { :with => /^[A-Z][0-9]$/,
+  #     :message => "Just too awesomezz" }
+
+  # # validates :content, presence: true
+
+  # validate :validate_tag
+
+  # def validate_tag
+  #   tag_list.each do |tag|
+  #     # This will only accept two character alphanumeric entry such as A1, B2, C3. The alpha character has to precede the numeric.
+  #     errors.add(:tag_list, "Please enter the code in the right format") unless tag =~ /^[A-Z][0-9]$/
+  #   end
+  # end
 end
