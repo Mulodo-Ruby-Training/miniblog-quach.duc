@@ -21,9 +21,9 @@ Post.delete_all()
 # CREAT==========================
 # Creat 20 post
 (1..20).each do |e|
-  Post.create(  title: 'Title'+e.to_s,
-                      description: 'Lorem ipsum Sed eiusmod in esse magna veniam quis tempor mollit in ut velit adipisicing qui aliqua qui eiusmod mollit exercitation fugiat.'+e.to_s,
-                      content: 'Lorem ipsum Nisi dolor consectetur aliquip laborum tempor proident in ullamco in in anim sit dolore dolor cillum aliqua qui consectetur enim quis non in id eu laborum officia ut consectetur cillum sint.'+e.to_s,
+  Post.create(  title: 'Ruby on Rails入門'+e.to_s,
+                      description: 'Ruby on RailsはWebアプリケーション作成のためのフレームワークの一つであり、プログラミング言語としてRubyを使用するフレームワークの代表的なものです。ここではRailsを使ったアプリケーション作成の方法について順に解説を行ないます'+e.to_s,
+                      content: '、プログラミング言語としてRubyを使用するフレームワークの代表的なものです。ここではRailsを使ったアプリケーション作成の方法について順に解説を行ないます アプリケーション作成から実行までの手順 Scaffoldを使ったアプリケーション雛形の作成 .....'+e.to_s,
                       thumbnail: 'thumbnail'+e.to_s,
                       user_id: e.to_s,
                       status: true)

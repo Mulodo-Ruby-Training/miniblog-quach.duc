@@ -22,21 +22,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     @user = User.new(user_params)
     # Funtion upload image and validate
-    # TODO: short code
-    if avatar_params[:avatar]
-      if ["image/svg","image/gif"].include?(avatar_params[:avatar].content_type.to_s)
-         flash[:alert] = "File extention fail (svg,gif)"
-         render :new and return
-      elsif avatar_params[:avatar].size > 1000000
-         flash[:alert] = "File size much be < 1MB"
-         render :new and return
-      else
-        ImagesUpload.upload(@user, avatar_params, "avatar")
-      end
-    end
+    validate_avatar
     if @user.save
       redirect_to log_in_path,:flash => { :notice => "Signed up success, can login to system !", :user_name => @user[:username] }
     else
@@ -52,17 +40,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      if avatar_params[:avatar]
-        if ["image/svg","image/gif"].include?(avatar_params[:avatar].content_type.to_s)
-          flash[:alert] = "File extention fail (svg,gif)"
-          render :new and return
-        elsif avatar_params[:avatar].size > 1000000
-          flash[:alert] = "File size much be < 1MB"
-          render :new and return
-        else
-          ImagesUpload.upload(@user, avatar_params, "avatar")
-        end
-    end
+      validate_avatar
       redirect_to '/users/'+@user[:id].to_s, :flash => { :notice => "Update profile successfully"}
     else
       render :edit and return
@@ -75,6 +53,19 @@ class UsersController < ApplicationController
   end
 
 
+  def validate_avatar
+    if avatar_params[:avatar]
+      if ["image/svg","image/gif"].include?(avatar_params[:avatar].content_type.to_s)
+        flash[:alert] = "File extention fail (svg,gif)"
+        render :new and return
+      elsif avatar_params[:avatar].size > 1000000
+        flash[:alert] = "File size much be < 1MB"
+        render :new and return
+      else
+        ImagesUpload.upload(@user, avatar_params, "avatar")
+      end
+    end
+  end
 
 private
 def set_post
@@ -87,6 +78,8 @@ end
 
 def user_params
   params.require(:user).permit(:email,:username,:first_name,:last_name,:address,:gender,:birthday,:avatar, :password, :password_confirmation)
+  # TEST STRONG PARAMETER
+  # params.require(:user).permit(:email,:username,:last_name,:address,:gender,:birthday,:avatar, :password, :password_confirmation)
 end
 end
 
