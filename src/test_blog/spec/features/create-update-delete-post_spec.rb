@@ -13,7 +13,9 @@ describe 'User sign up to create post' do
 
   it "success" do
     user_sign_up(user_1st)
+    sleep(inspection_time=5)
     user_log_in(user_1st)
+    sleep(inspection_time=5)
 
     @driver.get 'http://localhost:3000'
     # Test with mode production
@@ -31,6 +33,7 @@ describe 'User sign up to create post' do
     @driver.find_element(:name, "create_post_test").click
     # accept alert box
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
   it "after that user want update info of this post" do
@@ -48,6 +51,7 @@ describe 'User sign up to create post' do
     @driver.find_element(:name, 'edit_post_test').click
 
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
   it "final user delete this post" do
@@ -57,6 +61,7 @@ describe 'User sign up to create post' do
 
     @driver.find_element(:name, 'delete_post_test_'+post_1st[:id].to_s).click
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
 end

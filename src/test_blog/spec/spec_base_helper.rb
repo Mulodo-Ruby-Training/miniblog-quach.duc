@@ -36,7 +36,7 @@ def user_sign_up(user)
   @driver.find_element(name: 'user[username]').send_keys(user[:username])
   @driver.find_element(name: 'user[password]').send_keys(user[:password])
   @driver.find_element(name: 'user[password_confirmation]').send_keys(user[:password])
-  # Fill call action submit of form
+  # Call action submit of form
   @driver.find_element(name: 'register_test').submit
 end
 

@@ -9,7 +9,9 @@ describe 'User want create account in blog' do
 
   it "User create account and login with this account" do
     user_sign_up(user_1st)
+    sleep(inspection_time=5)
     user_log_in(user_1st)
+    sleep(inspection_time=5)
   end
 
   it "After that user log out" do
