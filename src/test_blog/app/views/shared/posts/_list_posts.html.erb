@@ -25,7 +25,7 @@
             </h3>
             <p><%= link_to "Author","/users/"+post.user_id.to_s %></a></p>
             <p><%= post.description.truncate(200, :separator => " ") %></p>
-            <p><a href="/posts/<%= post.id %>", class = "btn btn-primary"> Read More</a></p>
+            <p><a href="/posts/<%= post.id %>", class = "btn btn-default"> Read More</a></p>
             <% if current_user && current_user[:id] == post.user_id %>
             <ul class="list-inline">
               <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", name: "update_post_test_"+ post.id.to_s %></li>

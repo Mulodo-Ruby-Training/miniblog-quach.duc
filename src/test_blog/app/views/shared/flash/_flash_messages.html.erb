@@ -1,5 +1,6 @@
 <% case notice_type %>
 <% when "errors_list" %>
+      <br/>
       <div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         <ul>
@@ -10,6 +11,7 @@
       </div>
 <% when "notice" %>
       <% if notice %>
+        <br/>
         <div class="alert alert-success alert-dismissible fade in" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
             <p><%= flash[:notice] %></p>
@@ -17,6 +19,7 @@
       <% end %>
 <% when "alert" %>
       <% if alert %>
+        <br/>
         <div class="alert alert-danger alert-dismissible fade in" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
             <p><%= flash[:alert] %></p>

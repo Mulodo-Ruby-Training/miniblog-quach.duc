@@ -36,6 +36,7 @@ describe 'User sign up to create post' do
     @driver.find_element(:name, "create_post_test").click
     # accept alert box
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
   it "after that user 2nd sign up account and comment in user_1st's post" do
@@ -48,6 +49,7 @@ describe 'User sign up to create post' do
     @driver.find_element(:name, "comment_test").click
     # accept alert box
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
   it "one day user 2nd log in to website and update info of him comment" do
@@ -60,6 +62,7 @@ describe 'User sign up to create post' do
     @driver.find_element(:name, "edit_comment_accept").click
     # accept alert box
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 
   it "final user 2nd delete comment" do
@@ -67,5 +70,6 @@ describe 'User sign up to create post' do
     @driver.get 'http://localhost:3000/posts/'+post_1st[:id].to_s
     @driver.find_element(:name, "delete_comment_test").click
     @driver.switch_to.alert.accept
+    sleep(inspection_time=5)
   end
 end

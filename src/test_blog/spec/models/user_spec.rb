@@ -34,6 +34,12 @@ RSpec.describe User, type: :model do
       end
 
       context "check username" do
+        it "when a username is is already taken" do
+          user_same_name = @user.dup
+          user_same_name.username = @user.username.upcase
+          user_same_name.save
+        end
+
         it "when a username is not present" do
           @user.username = nil
           expect(@user).to be_invalid

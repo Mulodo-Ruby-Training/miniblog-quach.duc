@@ -17,7 +17,7 @@
       <br/>
       <div>
         <%= f.label :tag_list, "Category (separated by commas)" %><br />
-        <%= f.text_field :tag_list, value: @post.tag_list.to_s %>
+        <%= f.text_field :tag_list, value: @post.tag_list.to_s, class: "form-control" %>
       </div>
       <br/>
       <div>
