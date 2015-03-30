@@ -7,30 +7,36 @@
         </a>
       </div> -->
       <div class="col-md-12">
-        <div class="col-md-5">
-          <% if post.thumbnail_path %>
-          <div style="width: 237px; height:135px; border:solid; border-width: 1px;margin-top: 25px;">
-            <%= image_tag "/upload/"+ post.thumbnail_path,:style => " width: 100%; height: 100%; object-fit: contain;" %>
+        <div class="row" style="background: none repeat scroll 0% 0% white;">
+          <div class="col-md-5">
+            <% if post.thumbnail_path %>
+            <div style="width: 237px; height:182px; border:solid; border-width: 1px;margin-top: 25px;">
+              <%= image_tag "/upload/"+ post.thumbnail_path,:style => " width: 100%; height: 100%; object-fit: fill;" %>
+            </div>
+            <% else %>
+            <div style="width: 237px; height:182px; border:solid; border-width: 1px;margin-top: 25px;">
+              <%=  image_tag "no_images.jpeg",:style => " width: 100%; height: 100%; max-width:300px; object-fit: fill;" %>
+            </div>
+            <% end %>
           </div>
-          <% else %>
-          <div style="width: 237px; height:135px; border:solid; border-width: 1px;margin-top: 25px;">
-            <%=  image_tag "no_images.jpeg",:style => " width: 100%; height: 100%; object-fit: contain;" %>
+          <div class="col-md-6">
+            <h3>
+              <a href="/posts/<%= post.id %>"><%= post.title.truncate(20, :separator => " ").capitalize %></a>
+            </h3>
+            <p><%= link_to "Author","/users/"+post.user_id.to_s %></a></p>
+            <p><%= post.description.truncate(200, :separator => " ") %></p>
+            <p><a href="/posts/<%= post.id %>", class = "btn btn-primary"> Read More</a></p>
+            <% if current_user && current_user[:id] == post.user_id %>
+            <ul class="list-inline">
+              <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", name: "update_post_test_"+ post.id.to_s %></li>
+              <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs", name: "delete_post_test_"+ post.id.to_s  %></li>
+            </ul>
+            <% else %>
+            <div>&nbsp;</div>
+            <% end %>
+            </p>
           </div>
-          <% end %>
         </div>
-        <div class="col-md-6">
-          <h3>
-            <a href="/posts/<%= post.id %>"><%= post.title.truncate(20, :separator => " ").capitalize %></a>
-          </h3>
-          <p><%= link_to "Author","/users/"+post.user_id.to_s %></a></p>
-          <p><%= post.description.truncate(200, :separator => " ") %></p>
-          <a href="/posts/<%= post.id %>"> Read More</p></a>
-          <% if current_user && current_user[:id] == post.user_id %>
-          <ul class="list-inline">
-            <li><%= button_to 'Edit', edit_post_path(post.id),:method => :get,:remote => true, "data-target" => "#myModal", "data-toggle" => "modal", :class => "btn btn-primary btn-xs", name: "update_post_test_"+ post.id.to_s %></li>
-            <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs", name: "delete_post_test_"+ post.id.to_s  %></li>
-          </ul>
-          <% end %>
-        </div>
+        <br/>
     <% end %>
   </div>
