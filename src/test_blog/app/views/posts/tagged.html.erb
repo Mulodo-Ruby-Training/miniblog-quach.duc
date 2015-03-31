@@ -1,0 +1,42 @@
+<!-- Page Content -->
+<div class="container">
+<!-- Page Heading/Breadcrumbs -->
+  <div class="row">
+      <div class="col-lg-12">
+          <ol class="breadcrumb">
+              <li><a href="/">Home</a>
+              </li>
+              <li class="active">List all post of <%= params[:tag].capitalize %> </li>
+          </ol>
+      </div>
+  </div>
+  <br/>
+<% @posts.each do |post| %>
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default text-center">
+      <div class="panel-heading">
+            <% if post.thumbnail_path %>
+              <div style="width: auto; height:135px; border:solid; border-width: 1px;">
+                <%= image_tag "/upload/"+ post.thumbnail_path,:style => " width: 100%; height: 100%; object-fit: contain;" %>
+              </div>
+          <% else %>
+             <div style="width: auto; height:135px; border:solid; border-width: 1px;">
+                <%=  image_tag "no_images.jpeg",:style => " width: 100%; height: 100%; object-fit: contain;" %>
+              </div>
+          <% end %>
+      </div>
+      <div class="panel-body">
+          <h3><%= post.title.truncate(20, :separator => " ").upcase  %><br>
+              <!-- TODO: username -->
+              <small><%= link_to "Author","/users/"+post.user_id.to_s %></small>
+          </h3>
+          <p><%= post.description.truncate(40, :separator => " ") %></p>
+          <ul class="list-inline">
+              <li>
+                <a href="/posts/<%= post.id %>" class="btn btn-primary">Read More</a>
+              </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
