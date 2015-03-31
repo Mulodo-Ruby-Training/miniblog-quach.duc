@@ -23,8 +23,8 @@
             <h3>
               <a href="/posts/<%= post.id %>"><%= post.title.truncate(20, :separator => " ").capitalize %></a>
             </h3>
-            <p><%= link_to "Author","/users/"+post.user_id.to_s %></a></p>
-            <p><%= post.description.truncate(200, :separator => " ") %></p>
+            <p><%= link_to post.user.username ,"/users/"+post.user.id.to_s %></a></p>
+            <div style="width: auto;"><%= post.description.truncate(200, :separator => " ") %></div>
             <p><a href="/posts/<%= post.id %>", class = "btn btn-default"> Read More</a></p>
             <% if current_user && current_user[:id] == post.user_id %>
             <ul class="list-inline">

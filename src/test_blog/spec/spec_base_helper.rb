@@ -23,6 +23,13 @@ def hook_selenium
 
 end
 
+def config_init(type)
+  case type
+  when "host"
+    'http://localhost:3000'
+  end
+end
+
 def hook_wait_post
   wait = Selenium::WebDriver::Wait.new(:timeout => 20)
   wait.until { @driver.find_element(:name => "post[title]") }

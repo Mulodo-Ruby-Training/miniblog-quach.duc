@@ -53,6 +53,9 @@ gem 'acts-as-taggable-on', '~> 3.4'
 group :development, :test do
   # gem test code coverage: https://github.com/colszowka/simplecov
   gem 'simplecov'
+
+  gem 'brakeman', :require => false
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

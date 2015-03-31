@@ -16,7 +16,7 @@ describe 'User want create account in blog' do
 
   it "After that user log out" do
     # Get url to logout
-    @driver.get 'http://localhost:3000/log_out'
+    @driver.get config_init("host")+'/log_out'
   end
 
 end

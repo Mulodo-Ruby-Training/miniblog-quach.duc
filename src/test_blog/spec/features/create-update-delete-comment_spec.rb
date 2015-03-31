@@ -18,7 +18,7 @@ describe 'User sign up to create post' do
     user_sign_up(user_1st)
     user_log_in(user_1st)
 
-    @driver.get 'http://localhost:3000'
+    @driver.get config_init("host")
     # Test with mode production
     @driver.find_element(:id, "new_post_test").click
 
@@ -43,7 +43,7 @@ describe 'User sign up to create post' do
     user_sign_up(user_2nd)
     user_log_in(user_2nd)
 
-    @driver.get 'http://localhost:3000/posts/'+post_1st[:id].to_s
+    @driver.get config_init("host")+'/posts/'+post_1st[:id].to_s
     # Test with mode production
     @driver.find_element(name: 'comment[content]').send_keys(comment_3th[:content])
     @driver.find_element(:name, "comment_test").click
@@ -54,7 +54,7 @@ describe 'User sign up to create post' do
 
   it "one day user 2nd log in to website and update info of him comment" do
     user_log_in(user_2nd)
-    @driver.get 'http://localhost:3000/posts/'+post_1st[:id].to_s
+    @driver.get config_init("host")+'/posts/'+post_1st[:id].to_s
     @driver.find_element(:name, "edit_comment_test").click
 
     @driver.find_element(name: 'comment[content]').send_keys(comment_4th[:content])

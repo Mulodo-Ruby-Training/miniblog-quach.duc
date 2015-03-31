@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
   before_save  :ecrypt_password
 
   validates :username, presence: true
-  validates :email, presence: true
 
+  validates :email, presence: true
   validates_uniqueness_of :email, presence: true
+
+  validates :username, length: { minimum: 5 }
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

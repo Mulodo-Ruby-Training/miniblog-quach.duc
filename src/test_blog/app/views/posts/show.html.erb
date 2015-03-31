@@ -11,7 +11,6 @@
           <ol class="breadcrumb">
               <li><a href="/">Home</a>
               </li>
-              <li class="active">List All Post</li>
               <li class="active"><%= @post.title %></li>
           </ol>
       </div>
@@ -58,11 +57,11 @@
                 </ul>
                 <hr>
             <% end %>
-          <!-- Blog Widgets some auhor -->
+          <!-- Blog Widgets same auhor -->
           <div class="well">
-            <h4>Some Author</h4>
+            <h4>Same Author</h4>
             <hr/>
-            <% @post_some_author.each do |psa| %>
+            <% @post_same_author.each do |psa| %>
               <p><a href="/posts/<%= psa.id %>"><%= psa.title.truncate(20, :separator => " ").upcase %></a></p>
               <br>
             <% end %>
@@ -95,9 +94,6 @@
                                 <!-- TODO: format comment -->
                                 <!-- TEST XSS -->
                                 <%= post_comment.content %>
-                                <!--<%== post_comment.content %> -->
-                                <!-- <a href=javascript:alert('Hello')>dasda</a> -->
-                                <!-- <%= sanitize "<a href=javascript:alert('Hello')>dasda</a>" %> -->
                              </div>
                            </div>
                         <% if current_user && current_user[:id] == post_comment.user_id %>
@@ -114,11 +110,11 @@
           <!-- Comments Form -->
               <% unless current_user %>
                 <div class="well">
-                  <h4>Log in to Comment</h4>
+                  <h4>Log in to comment</h4>
                 </div>
               <% else %>
                 <div class="well">
-                      <h4>Leave a Comment:</h4>
+                      <h4>Leave a comment:</h4>
                       <%= form_for @comment, :remote => true do |f| %>
                       <form role="form">
                           <div class="form-group">

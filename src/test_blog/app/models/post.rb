@@ -6,6 +6,9 @@ class Post < ActiveRecord::Base
   acts_as_taggable
 
   validates :title, presence: true
+  validates :title, length: { minimum: 10 }
+  validates :description, presence: true
+  validates :description, length: { minimum: 50 }
 
   # validates :tag_list, :format => { :with => /^[A-Z][0-9]$/,
   #     :message => "Just too awesomezz" }

@@ -16,7 +16,7 @@ RSpec.describe Comment, type: :model do
         expect(@comment).to be_valid
       end
 
-      it "when update post" do
+      it "when update comment" do
         Comment.create(comment_1st)
         # Destroy post_2nt if exist
         # find_and_destroy("Comment",comment_2nd[:id])

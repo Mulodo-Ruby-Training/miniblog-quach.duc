@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MINI BLOG <%= current_page_path %> </title>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <title>Mini Blog <%= current_page_path %> </title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- Add ckeditor -->
@@ -15,12 +16,12 @@
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only" title="Back to home" ><i class="fa fa-home fa-lg" title="Home%>"></i>&nbsp;MINI BLOG</span>
+                  <span class="sr-only" title="Back to home" ><i class="fa fa-home fa-lg" title="Home%>"></i>&nbsp;Mini blog</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-            <a class="navbar-brand" href="/" title="Back to home"><i class="fa fa-home fa-lg" title="Home%>"></i>&nbsp;MINI BLOG</a>
+            <a class="navbar-brand" href="/" title="Back to home"><i class="fa fa-home fa-lg" title="Home%>"></i>&nbsp;Mini blog</a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,10 +35,10 @@
                     </form>
                   <% end %>
                   <li>
-                      <a href="/posts">POSTS</a>
+                      <a href="/posts">Posts</a>
                   </li>
                   <li>
-                      <a href="/list_users">USERS</a>
+                      <a href="/list_users">Users</a>
                   </li>
                   <% if current_user %>
                       <li class="dropdown">
@@ -53,17 +54,17 @@
                             <% end %>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="profile">
-                          <li><%= link_to "PROFILE", "/users/"+current_user[:id].to_s %></li>
-                          <li><%= link_to 'MY POSTS',"/posts?user_id="+current_user[:id].to_s %></li>
-                          <li><%= link_to "LOG OUT", log_out_path %></li>
+                          <li><%= link_to "Profile", "/users/"+current_user[:id].to_s %></li>
+                          <li><%= link_to 'My posts',"/posts?user_id="+current_user[:id].to_s %></li>
+                          <li><%= link_to "Log out", log_out_path %></li>
                         </ul>
                       </li>
                   <% else %>
                     <li>
-                      <%= link_to "LOG IN", log_in_path %>
+                      <%= link_to "Log in", log_in_path %>
                     </li>
                     <li>
-                      <%= link_to "SIGN UP", sign_up_path %>
+                      <%= link_to "Sign up", sign_up_path %>
                     </li>
                   <% end %>
               </ul>

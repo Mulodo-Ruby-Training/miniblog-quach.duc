@@ -26,6 +26,7 @@ Post.delete_all()
                       content: '、プログラミング言語としてRubyを使用するフレームワークの代表的なものです。ここではRailsを使ったアプリケーション作成の方法について順に解説を行ないます アプリケーション作成から実行までの手順 Scaffoldを使ったアプリケーション雛形の作成 .....'+e.to_s,
                       thumbnail: 'thumbnail'+e.to_s,
                       user_id: e.to_s,
+                      tag_list: 'ruby,rails,ruby_on_rails',
                       status: true)
 end
 # # ==============================

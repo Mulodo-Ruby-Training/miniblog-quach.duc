@@ -7,7 +7,9 @@ capybara-*.html
 /db/*.sqlite3-journal
 /public/system
 /public/upload/
+## Test tool report
 /coverage/
+brakeman-report.html
 /spec/tmp
 **.orig
 rerun.txt

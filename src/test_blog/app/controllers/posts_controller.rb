@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
     if  params[:user_id]
       # Get all post of user
-      return @posts = User.find_by_id(params[:user_id]).posts.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
+      return @posts = User.find_by_id(params[:user_id]).posts.page(params[:page]).per(8).order('updated_at DESC')
     end
       # Get all post
       @posts = Post.where('status = 1').page(params[:page]).per(8).order('updated_at DESC')
@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = Post.new(post_params)
     # DESC===========================
     # Create record for Post
@@ -46,8 +47,16 @@ class PostsController < ApplicationController
         # else
         #   format.js { render :action => "create_fail"}
         # end
-        flash[:alert] = "Something went wrong !"
-        @post.save ? format.js { render :action => "create_ok"} : format.js { render :action => "create_fail"}
+        if @post.save
+          format.js { render :action => "create_ok"}
+        else
+          flash[:alert] = ""
+          for message in  @post.errors.full_messages
+            flash[:alert] += message + " "
+          end
+          format.js { render :action => "create_fail"}
+        end
+
       end
   end
 
@@ -68,7 +77,8 @@ class PostsController < ApplicationController
     # @post_comments = @post.comments.order('updated_at DESC')
     @post_comments = @post.comments
     @comment = Comment.new
-    @post_some_author = Post.where(user_id: @post.user_id).where('status = 1')
+    # @post_same_author = Post.where(user_id: @post.user_id).where('status = 1')
+    @post_same_author = Post.where('user_id = :post_user_id AND status = 1 AND id != :post_id', {post_user_id: @post.user_id,post_id: @post.id})
   end
 
   def update
@@ -125,11 +135,11 @@ class PostsController < ApplicationController
 
 
     def post_params
-        # DESC===========================
-        # Filter params to get Post's param
-        # IN: params
-        # OUT: post_params
-        # DESC===========================
-        params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id, :tag_list)
+      # DESC===========================
+      # Filter params to get Post's param
+      # IN: params
+      # OUT: post_params
+      # DESC===========================
+      params.require(:post).permit(:title, :description, :content, :thumbnail, :status, :user_id, :tag_list)
     end
 end
